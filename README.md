@@ -59,7 +59,7 @@ It can be used as a **template for online stores, printing businesses, or small 
 
 Visit the live website:
 
-🌐 https://jamal-hashim.github.io/school/
+🌐 https://jamal-hashim.github.io/print/
 
 ---
 

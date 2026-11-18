@@ -1,130 +1,429 @@
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Print India</title>
-    <link rel="stylesheet" href="style.css">
+
+    <title>Print India | Premium Saree Collection</title>
+    <meta name="description" content="Explore the beautiful collection of premium silk sarees at Print India. Discover elegant traditional sarees at affordable prices.">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: '#861b35',
+                        gold: '#c49a52',
+                        cream: '#fffaf5'
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                        heading: ['Playfair Display', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .hero {
+            background:
+                linear-gradient(90deg, rgba(25,10,15,.82), rgba(25,10,15,.25)),
+                url('images/s1.jpeg') center/cover no-repeat;
+        }
+
+        .product-card img {
+            transition: transform .6s ease;
+        }
+
+        .product-card:hover img {
+            transform: scale(1.08);
+        }
+
+        .mobile-menu {
+            transition: all .3s ease;
+        }
+    </style>
 </head>
 
-<body>
+<body class="bg-cream text-gray-800">
+
+    <!-- Top Bar -->
+    <div class="bg-brand text-white text-center py-2 px-3 text-xs sm:text-sm tracking-wide">
+        ✨ Discover Elegance | Premium Sarees at Affordable Prices ✨
+    </div>
 
     <!-- Navbar -->
+    <header class="bg-white sticky top-0 z-50 shadow-sm">
+        <nav class="max-w-7xl mx-auto px-5 lg:px-8 h-20 flex items-center justify-between">
 
-    <header>
-        <nav>
-            <div class="logo">
-                <img src="images/logo.png" alt="">
-            </div>
-            <div class="menu-toggle" id="menu-toggle">
+            <a href="index.html" class="flex items-center gap-2">
+                <img src="images/logo.png" alt="Print India Logo"
+                    class="h-12 w-auto object-contain">
+                <div>
+                    <h2 class="font-heading text-2xl font-bold text-brand">Print India</h2>
+                    <p class="text-[9px] tracking-[3px] text-gold uppercase">Elegance Forever</p>
+                </div>
+            </a>
+
+            <button id="menu-toggle"
+                class="md:hidden text-3xl text-brand"
+                aria-label="Toggle navigation"
+                aria-expanded="false">
                 ☰
-            </div>
-            <ul id="nav-links">
-                <li><a href="index.html" class="active">Home</a></li>
+            </button>
+
+            <ul id="nav-links"
+                class="hidden md:flex items-center gap-9 font-medium text-sm">
+
+                <li><a href="index.html" class="text-brand">Home</a></li>
+                <li><a href="about.html" class="hover:text-brand transition">About</a></li>
+                <li><a href="products.html" class="hover:text-brand transition">Products</a></li>
+                <li><a href="contact.html" class="hover:text-brand transition">Contact</a></li>
+
+                <li>
+                    <a href="products.html"
+                        class="bg-brand text-white px-6 py-3 rounded-full hover:bg-[#641327] transition">
+                        Shop Now →
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="mobile-menu hidden md:hidden bg-white border-t">
+            <ul class="flex flex-col px-6 py-4 gap-4 text-sm font-medium">
+                <li><a href="index.html" class="text-brand">Home</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="products.html">Products</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
-        </nav>
+        </div>
     </header>
 
     <!-- Hero Section -->
+    <section class="hero min-h-[550px] md:min-h-[650px] flex items-center">
 
-    <section class="hero">
-        <div class="heading">
-            <h1>Welcome to Print India</h1>
-            <h2>Best Quality Sarees are available here at Good Prices.</h2>
-            <a href="products.html">View All Products</a>
+        <div class="max-w-7xl mx-auto w-full px-6 lg:px-8 py-20">
+
+            <div class="max-w-2xl text-white">
+
+                <span class="text-gold uppercase tracking-[4px] text-xs sm:text-sm font-semibold">
+                    Tradition Meets Fashion
+                </span>
+
+                <h1 class="font-heading text-5xl sm:text-6xl lg:text-7xl font-bold leading-tight mt-6">
+                    Elegance Woven
+                    <span class="text-gold italic">In Every</span>
+                    Thread.
+                </h1>
+
+                <p class="text-gray-200 mt-6 leading-8 text-sm sm:text-base max-w-lg">
+                    Discover our exclusive collection of beautiful sarees.
+                    Celebrate every occasion with timeless elegance and
+                    traditional Indian craftsmanship.
+                </p>
+
+                <div class="flex flex-wrap gap-4 mt-9">
+                    <a href="products.html"
+                        class="bg-brand hover:bg-white hover:text-brand text-white px-8 py-4 rounded-full font-medium transition">
+                        Explore Collection →
+                    </a>
+
+                    <a href="about.html"
+                        class="border border-white hover:bg-white hover:text-brand px-8 py-4 rounded-full font-medium transition">
+                        Discover More
+                    </a>
+                </div>
+
+            </div>
         </div>
     </section>
 
-    <!-- Product Section -->
+    <!-- Features -->
+    <section class="max-w-7xl mx-auto px-5 lg:px-8 py-12">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
 
-    <section class="product">
-        <h1>Our Products</h1>
-        <div class="product-container">
-            <div class="product-card">
-                <div class="product-img">
-                    <img src="images/s1.jpeg" alt="Product 1">
-                </div>
-                <div class="product-content">
-                    <h3>Silk Saree</h3>
-                    <p>₹2,499</p>
-                </div>
-                <div class="product-btn">
-                    <a href="#">Buy Now</a>
-                    <a href="#">View Details</a>
-                </div>
+            <div class="text-center">
+                <div class="text-3xl mb-3">✦</div>
+                <h3 class="font-semibold text-sm">Premium Quality</h3>
+                <p class="text-xs text-gray-500 mt-1">Carefully Selected Fabrics</p>
             </div>
-            <div class="product-card">
-                <div class="product-img">
-                    <img src="images/s3.jpeg" alt="Product 1">
-                </div>
-                <div class="product-content">
-                    <h3>Silk Saree</h3>
-                    <p>₹2,499</p>
-                </div>
-                <div class="product-btn">
-                    <a href="#">Buy Now</a>
-                    <a href="#">View Details</a>
-                </div>
+
+            <div class="text-center">
+                <div class="text-3xl mb-3">♡</div>
+                <h3 class="font-semibold text-sm">Elegant Designs</h3>
+                <p class="text-xs text-gray-500 mt-1">Traditional & Modern</p>
             </div>
-            <div class="product-card">
-                <div class="product-img">
-                    <img src="images/s4.jpeg" alt="Product 1">
-                </div>
-                <div class="product-content">
-                    <h3>Silk Saree</h3>
-                    <p>₹2,499</p>
-                </div>
-                <div class="product-btn">
-                    <a href="#">Buy Now</a>
-                    <a href="#">View Details</a>
-                </div>
+
+            <div class="text-center">
+                <div class="text-3xl mb-3">₹</div>
+                <h3 class="font-semibold text-sm">Affordable Prices</h3>
+                <p class="text-xs text-gray-500 mt-1">Value for Your Money</p>
             </div>
+
+            <div class="text-center">
+                <div class="text-3xl mb-3">♧</div>
+                <h3 class="font-semibold text-sm">Customer First</h3>
+                <p class="text-xs text-gray-500 mt-1">Service You Can Trust</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="py-20 bg-white" id="products">
+
+        <div class="max-w-7xl mx-auto px-5 lg:px-8">
+
+            <div class="text-center mb-12">
+                <span class="text-gold uppercase tracking-[4px] text-xs font-semibold">
+                    Our Collection
+                </span>
+
+                <h2 class="font-heading text-4xl sm:text-5xl font-bold mt-3 text-gray-900">
+                    Explore Our Sarees
+                </h2>
+
+                <p class="text-gray-500 text-sm mt-4 max-w-xl mx-auto">
+                    Beautiful designs, rich colours and timeless elegance.
+                    Find the perfect saree for every special moment.
+                </p>
+            </div>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                <!-- Product 1 -->
+                <div class="product-card group bg-cream rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition">
+
+                    <div class="relative h-[350px] overflow-hidden">
+                        <img src="images/s1.jpeg"
+                            alt="Premium Silk Saree"
+                            class="w-full h-full object-cover">
+
+                        <span class="absolute top-4 left-4 bg-brand text-white text-xs px-4 py-2 rounded-full">
+                            Featured
+                        </span>
+                    </div>
+
+                    <div class="p-6">
+                        <p class="text-gold text-xs tracking-widest uppercase">Premium Collection</p>
+
+                        <h3 class="font-heading text-2xl font-bold mt-2">
+                            Elegant Silk Saree
+                        </h3>
+
+                        <p class="text-brand font-semibold text-xl mt-3">₹2,499</p>
+
+                        <div class="flex gap-3 mt-5">
+                            <a href="contact.html"
+                                class="flex-1 text-center bg-brand text-white py-3 rounded-full text-sm hover:bg-[#641327] transition">
+                                Buy Now
+                            </a>
+
+                            <a href="products.html"
+                                class="flex-1 text-center border border-brand text-brand py-3 rounded-full text-sm hover:bg-brand hover:text-white transition">
+                                View Details
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="product-card group bg-cream rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition">
+
+                    <div class="relative h-[350px] overflow-hidden">
+                        <img src="images/s3.jpeg"
+                            alt="Designer Traditional Saree"
+                            class="w-full h-full object-cover">
+                    </div>
+
+                    <div class="p-6">
+                        <p class="text-gold text-xs tracking-widest uppercase">Traditional Collection</p>
+
+                        <h3 class="font-heading text-2xl font-bold mt-2">
+                            Designer Saree
+                        </h3>
+
+                        <p class="text-brand font-semibold text-xl mt-3">₹2,499</p>
+
+                        <div class="flex gap-3 mt-5">
+                            <a href="contact.html"
+                                class="flex-1 text-center bg-brand text-white py-3 rounded-full text-sm hover:bg-[#641327] transition">
+                                Buy Now
+                            </a>
+
+                            <a href="products.html"
+                                class="flex-1 text-center border border-brand text-brand py-3 rounded-full text-sm hover:bg-brand hover:text-white transition">
+                                View Details
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="product-card group bg-cream rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition">
+
+                    <div class="relative h-[350px] overflow-hidden">
+                        <img src="images/s4.jpeg"
+                            alt="Beautiful Silk Saree"
+                            class="w-full h-full object-cover">
+                    </div>
+
+                    <div class="p-6">
+                        <p class="text-gold text-xs tracking-widest uppercase">Exclusive Collection</p>
+
+                        <h3 class="font-heading text-2xl font-bold mt-2">
+                            Royal Silk Saree
+                        </h3>
+
+                        <p class="text-brand font-semibold text-xl mt-3">₹2,499</p>
+
+                        <div class="flex gap-3 mt-5">
+                            <a href="contact.html"
+                                class="flex-1 text-center bg-brand text-white py-3 rounded-full text-sm hover:bg-[#641327] transition">
+                                Buy Now
+                            </a>
+
+                            <a href="products.html"
+                                class="flex-1 text-center border border-brand text-brand py-3 rounded-full text-sm hover:bg-brand hover:text-white transition">
+                                View Details
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="text-center mt-12">
+                <a href="products.html"
+                    class="inline-block border border-brand text-brand px-9 py-4 rounded-full hover:bg-brand hover:text-white transition font-medium">
+                    View All Products →
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="bg-brand py-20 px-5">
+        <div class="max-w-4xl mx-auto text-center text-white">
+
+            <span class="text-gold uppercase tracking-[4px] text-xs">
+                Your Style, Your Story
+            </span>
+
+            <h2 class="font-heading text-4xl sm:text-5xl font-bold mt-5">
+                Make Every Occasion Special
+            </h2>
+
+            <p class="text-white/80 mt-5 text-sm sm:text-base leading-7">
+                Find your perfect saree and bring home the beauty of Indian tradition.
+            </p>
+
+            <a href="contact.html"
+                class="inline-block mt-8 bg-white text-brand px-9 py-4 rounded-full font-semibold hover:bg-gold hover:text-white transition">
+                Contact Us →
+            </a>
 
         </div>
     </section>
 
     <!-- Footer -->
+    <footer class="bg-[#1b1013] text-white pt-16">
 
-    <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-column">
-                <h3>Print India</h3>
-                <p>Elegant Sarees crafted with love and tradition.</p>
-            </div>
+        <div class="max-w-7xl mx-auto px-5 lg:px-8">
 
-            <div class="footer-column">
-                <h4>Quick Links</h4>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="products.html">Products</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-            </div>
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-12 pb-12">
 
-            <div class="footer-column">
-                <h4>Follow Us</h4>
-                <div class="social-icons">
-                    <a href="#">🌐</a>
-                    <a href="#">📸</a>
-                    <a href="#">💬</a>
+                <!-- About -->
+                <div>
+                    <h2 class="font-heading text-3xl font-bold text-white">
+                        Print <span class="text-gold">India</span>
+                    </h2>
+
+                    <p class="text-gray-400 text-sm leading-7 mt-5 max-w-xs">
+                        Elegant sarees crafted with love and tradition.
+                        Discover timeless beauty with Print India.
+                    </p>
                 </div>
-            </div>
-        </div>
 
-        <div class="footer-bottom">
-            <p>© 2025 Print India Sarees. All Rights Reserved.</p>
+                <!-- Links -->
+                <div>
+                    <h3 class="font-semibold text-lg mb-5">Quick Links</h3>
+
+                    <ul class="space-y-3 text-sm text-gray-400">
+                        <li><a href="index.html" class="hover:text-gold transition">Home</a></li>
+                        <li><a href="about.html" class="hover:text-gold transition">About Us</a></li>
+                        <li><a href="products.html" class="hover:text-gold transition">Our Products</a></li>
+                        <li><a href="contact.html" class="hover:text-gold transition">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <!-- Social -->
+                <div>
+                    <h3 class="font-semibold text-lg mb-5">Follow Us</h3>
+
+                    <p class="text-gray-400 text-sm mb-5">
+                        Stay connected with us for the latest collections.
+                    </p>
+
+                    <div class="flex gap-3">
+                        <a href="#" aria-label="Facebook"
+                            class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand transition">
+                            f
+                        </a>
+
+                        <a href="#" aria-label="Instagram"
+                            class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand transition">
+                            ◎
+                        </a>
+
+                        <a href="#" aria-label="WhatsApp"
+                            class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand transition">
+                            ☎
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="border-t border-white/10 py-6 text-center">
+                <p class="text-gray-500 text-xs sm:text-sm">
+                    © 2026 Print India Sarees. All Rights Reserved.
+                </p>
+            </div>
+
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <!-- Mobile Menu Script -->
+    <script>
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuToggle.addEventListener('click', function () {
+            mobileMenu.classList.toggle('hidden');
+
+            const isOpen = !mobileMenu.classList.contains('hidden');
+
+            menuToggle.innerHTML = isOpen ? '&times;' : '☰';
+            menuToggle.setAttribute('aria-expanded', isOpen);
+        });
+    </script>
+
 </body>
-
-
 </html>
-
-

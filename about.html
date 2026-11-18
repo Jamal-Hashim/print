@@ -1,112 +1,1256 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Print India</title>
-    <link rel="stylesheet" href="style.css">
+
+    <title>About Us | Print India - Textile Printing Excellence</title>
+
+    <meta name="description"
+        content="Learn about Print India, founded by Salam Bhai, with 30 years of experience in saree printing, custom sketching, and bag printing.">
+
+    <meta name="theme-color" content="#761b32">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: '#761b32',
+                        brandDark: '#521020',
+                        gold: '#c49a59',
+                        cream: '#faf7f2',
+                        soft: '#f2ebe2'
+                    },
+                    fontFamily: {
+                        sans: ['DM Sans', 'sans-serif'],
+                        heading: ['Playfair Display', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 100px;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: #faf7f2;
+            overflow-x: hidden;
+        }
+
+        .font-heading {
+            font-family: 'Playfair Display', serif;
+        }
+
+        ::selection {
+            background: #761b32;
+            color: white;
+        }
+
+        /* PAGE LOADER */
+
+        .page-loader {
+            position: fixed;
+            inset: 0;
+            background: #761b32;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity .6s ease, visibility .6s ease;
+        }
+
+        .page-loader.hide {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            color: white;
+            animation: pulse 1.5s infinite;
+        }
+
+        .loader-line {
+            width: 100px;
+            height: 2px;
+            background: rgba(255,255,255,.2);
+            margin: 18px auto;
+            overflow: hidden;
+        }
+
+        .loader-line::after {
+            content: '';
+            display: block;
+            width: 40%;
+            height: 100%;
+            background: #c49a59;
+            animation: loading 1.2s infinite;
+        }
+
+        @keyframes loading {
+            from { transform: translateX(-100%); }
+            to { transform: translateX(300%); }
+        }
+
+        @keyframes pulse {
+            50% { opacity: .5; }
+        }
+
+        /* NAVBAR */
+
+        .main-nav {
+            transition: all .35s ease;
+        }
+
+        .main-nav.scrolled {
+            background: rgba(255,255,255,.96);
+            box-shadow: 0 5px 25px rgba(0,0,0,.07);
+            backdrop-filter: blur(12px);
+        }
+
+        .nav-link {
+            position: relative;
+            padding: 8px 0;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            height: 2px;
+            width: 0;
+            background: #c49a59;
+            transition: width .3s ease;
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .mobile-menu {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: max-height .4s ease, opacity .3s ease;
+        }
+
+        .mobile-menu.open {
+            max-height: 350px;
+            opacity: 1;
+        }
+
+        /* HERO */
+
+        .about-hero {
+            min-height: 430px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(35,10,19,.88),
+                    rgba(35,10,19,.45)
+                ),
+                url('images/about.png') center / cover no-repeat;
+        }
+
+        .hero-content {
+            animation: fadeUp .9s .2s both;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(35px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* REVEAL ANIMATION */
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(35px);
+            transition: all .8s ease;
+        }
+
+        .reveal.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-35px);
+            transition: all .8s ease;
+        }
+
+        .reveal-left.show {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(35px);
+            transition: all .8s ease;
+        }
+
+        .reveal-right.show {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* IMAGE */
+
+        .about-image-wrap {
+            overflow: hidden;
+            position: relative;
+        }
+
+        .about-image {
+            transition: transform .8s ease;
+        }
+
+        .about-image-wrap:hover .about-image {
+            transform: scale(1.05);
+        }
+
+        /* STATS */
+
+        .stat-card {
+            transition: all .35s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-7px);
+        }
+
+        /* SERVICE CARDS */
+
+        .service-card {
+            transition: all .4s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-9px);
+            box-shadow: 0 20px 40px rgba(70,30,40,.1);
+        }
+
+        .service-icon {
+            transition: transform .4s ease;
+        }
+
+        .service-card:hover .service-icon {
+            transform: rotateY(180deg);
+        }
+
+        /* BUTTON */
+
+        .primary-btn {
+            transition: all .3s ease;
+        }
+
+        .primary-btn:hover {
+            background: #521020;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(118,27,50,.2);
+        }
+
+        /* FOOTER */
+
+        .footer-link {
+            transition: all .3s ease;
+        }
+
+        .footer-link:hover {
+            color: #c49a59;
+            padding-left: 5px;
+        }
+
+        .social-link {
+            transition: all .3s ease;
+        }
+
+        .social-link:hover {
+            background: #c49a59;
+            color: #521020;
+            transform: translateY(-5px);
+        }
+
+        /* BACK TO TOP */
+
+        .back-top {
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(15px);
+            transition: all .3s ease;
+        }
+
+        .back-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        /* ACCESSIBILITY */
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: .01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: .01ms !important;
+                scroll-behavior: auto !important;
+            }
+
+            .reveal,
+            .reveal-left,
+            .reveal-right {
+                opacity: 1;
+                transform: none;
+            }
+        }
+
+        @media(max-width: 640px) {
+            .about-hero {
+                min-height: 380px;
+                background-position: center;
+            }
+        }
+
+    </style>
+
 </head>
+
 
 <body>
 
-    <!-- Navbar -->
+    <!-- PAGE LOADER -->
 
-    <header>
-        <nav>
-            <div class="logo">
-                <img src="images/logo.png" alt="">
+    <div class="page-loader" id="page-loader">
+
+        <div class="text-center">
+
+            <div class="loader-logo">
+                Print India
             </div>
-            <div class="menu-toggle" id="menu-toggle">
-                ☰
-            </div>
-            <ul id="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html" class="active">About</a></li>
-                <li><a href="products.html">Products</a></li>
-                <li><a href="contact.html">Contact</a></li>
+
+            <div class="loader-line"></div>
+
+            <p class="text-xs tracking-[4px] uppercase text-white/70">
+                Our Story, Our Tradition
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- TOP BAR -->
+
+    <div class="bg-brand text-white text-center py-2 px-3 text-[11px] sm:text-xs tracking-wider">
+        THREE DECADES OF TEXTILE PRINTING EXCELLENCE
+    </div>
+
+
+    <!-- NAVBAR -->
+
+    <header class="main-nav fixed top-[34px] left-0 w-full z-50" id="navbar">
+
+        <nav class="max-w-7xl mx-auto px-5 lg:px-8 h-[82px] flex items-center justify-between">
+
+            <!-- LOGO -->
+
+            <a href="index.html" class="flex items-center gap-2">
+
+                <img src="images/logo.png"
+                    alt="Print India Logo"
+                    class="h-12 w-auto object-contain">
+
+                <div>
+                    <h2 class="font-heading text-2xl font-bold text-brand">
+                        Print India
+                    </h2>
+
+                    <p class="text-[9px] tracking-[3px] text-gold uppercase">
+                        Elegance Forever
+                    </p>
+                </div>
+
+            </a>
+
+
+            <!-- DESKTOP MENU -->
+
+            <ul class="hidden md:flex items-center gap-9 text-sm font-medium text-gray-700">
+
+                <li>
+                    <a href="index.html" class="nav-link hover:text-brand">Home</a>
+                </li>
+
+                <li>
+                    <a href="about.html" class="nav-link active text-brand">About</a>
+                </li>
+
+                <li>
+                    <a href="products.html" class="nav-link hover:text-brand">Products</a>
+                </li>
+
+                <li>
+                    <a href="contact.html" class="nav-link hover:text-brand">Contact</a>
+                </li>
+
+                <li>
+                    <a href="products.html"
+                        class="bg-brand text-white px-6 py-3 rounded-full hover:bg-brandDark transition duration-300">
+                        Explore Collection →
+                    </a>
+                </li>
+
             </ul>
+
+
+            <!-- MOBILE TOGGLE -->
+
+            <button id="menu-toggle"
+                class="md:hidden text-brand text-3xl"
+                aria-label="Toggle navigation"
+                aria-expanded="false">
+                ☰
+            </button>
+
         </nav>
+
+
+        <!-- MOBILE MENU -->
+
+        <div id="mobile-menu" class="mobile-menu md:hidden bg-white shadow-lg">
+
+            <ul class="flex flex-col px-7 py-5 gap-5 text-sm font-medium">
+
+                <li><a href="index.html">Home</a></li>
+
+                <li><a href="about.html" class="text-brand">About</a></li>
+
+                <li><a href="products.html">Products</a></li>
+
+                <li><a href="contact.html">Contact</a></li>
+
+            </ul>
+
+        </div>
+
     </header>
 
-    <!-- Hero Section -->
 
-    <section class="hero">
-        <div class="heading">
-            <h1>Welcome to Print India</h1>
-            <h2>Best Quality Sarees are available here at Good Prices.</h2>
-            <a href="products.html">View All Products</a>
+    <!-- HERO SECTION -->
+
+    <section class="about-hero">
+
+        <div class="max-w-7xl mx-auto w-full px-6 lg:px-8 py-24">
+
+            <div class="hero-content max-w-2xl text-white">
+
+                <div class="flex items-center gap-3 mb-6">
+
+                    <span class="w-10 h-[1px] bg-gold"></span>
+
+                    <span class="text-gold uppercase tracking-[4px] text-xs font-semibold">
+                        Get to Know Us
+                    </span>
+
+                </div>
+
+                <h1 class="font-heading text-5xl sm:text-6xl lg:text-7xl font-semibold">
+                    Our Story,
+                    <span class="block italic text-gold">Our Tradition.</span>
+                </h1>
+
+                <p class="text-white/80 text-sm sm:text-base leading-8 mt-6 max-w-lg">
+                    Three decades of passion, creativity and dedication
+                    to the art of textile printing.
+                </p>
+
+                <div class="flex items-center gap-3 mt-8 text-sm">
+
+                    <a href="index.html" class="text-white/70 hover:text-gold">
+                        Home
+                    </a>
+
+                    <span class="text-gold">/</span>
+
+                    <span class="text-gold">About Us</span>
+
+                </div>
+
+            </div>
+
         </div>
+
     </section>
 
-    <!-- About Section -->
-    <section class="about-section">
-    <div class="about-container">
-        <h1 class="about-title">About <span>Us</span></h1>
-        <p class="about-intro">
-            Welcome to <strong>PRINT INDIA</strong>, where textile artistry and tradition have been our guiding principles for over three decades. With 30 years of experience, we have perfected the craft of bringing fabric to life through vibrant colors and intricate designs. Our journey began with a passion for quality and a commitment to preserving the rich heritage of Indian printing.Founded by our visionary owner, Salam Bhai, PRINT INDIA has grown from a passionate endeavor into a cornerstone of the textile printing industry. His dedication to craftsmanship and innovation continues to inspire our work every day. We pride ourselves on being a trusted partner for businesses that value exceptional quality and meticulous attention to detail.Our expertise covers a range of specialized services designed to meet the creative needs of the modern apparel and accessories market.Saree Printing: We specialize in creating exquisite prints for sarees, transforming them into timeless pieces of wearable art.Custom Sketching: Our talented artists provide bespoke sketching services to develop unique patterns and designs from the ground up.Bag Printing: We extend our printing mastery to accessories like shopper bags and side bags, ensuring your brand's aesthetic is consistent and beautiful.At PRINT INDIA, we don't just print on fabric; we weave stories of artistry and excellence. We are honored to carry our 30-year legacy forward and invite you to collaborate with us to create something truly special.Would you like the tone to be more formal or perhaps focus more on the technical aspects of your printing process?
-        </p>
 
-        <div class="about-main-section">
-            <div class="section-text">
-                <h2>Our Mission</h2>
-                <p>
-                    Our MissionTo deliver exceptional and reliable printing services for sarees, bags, and custom textiles through a deep commitment to craftsmanship, client collaboration, and artistic excellence. We strive to honor the legacy of our founder, Salam Bhai, by ensuring every design is executed with precision, passion, and a personal touch.
-                </p>
+    <!-- ABOUT INTRO -->
 
-                <h2>Our Vision</h2>
-                <p>
-                    Our VisionTo be the most trusted partner for textile artistry, blending three decades of heritage with innovative printing solutions to bring creative ideas to life on every fabric we touch.
-                </p>
-            </div>
+    <section class="py-24 bg-white">
 
-            <div class="section-img">
-                <img src="images/about.png" alt="About Print India Sarees">
-            </div>
-        </div>
-    </div>
-</section>
+        <div class="max-w-7xl mx-auto px-5 lg:px-8">
 
+            <div class="grid md:grid-cols-2 gap-14 items-center">
 
+                <!-- LEFT CONTENT -->
 
-    <!-- Footer -->
+                <div class="reveal-left">
 
-    <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-column">
-                <h3>Print India</h3>
-                <p>Elegant Sarees crafted with love and tradition.</p>
-            </div>
+                    <span class="text-gold uppercase tracking-[4px] text-xs font-semibold">
+                        Who We Are
+                    </span>
 
-            <div class="footer-column">
-                <h4>Quick Links</h4>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="products.html">Products</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-            </div>
+                    <h2 class="font-heading text-4xl sm:text-5xl mt-5 leading-tight text-gray-900">
 
-            <div class="footer-column">
-                <h4>Follow Us</h4>
-                <div class="social-icons">
-                    <a href="#">🌐</a>
-                    <a href="#">📸</a>
-                    <a href="#">💬</a>
+                        Bringing Fabric
+                        <span class="text-brand italic">to Life.</span>
+
+                    </h2>
+
+                    <div class="w-16 h-[2px] bg-gold mt-7"></div>
+
+                    <p class="text-gray-600 text-sm leading-8 mt-7">
+
+                        Welcome to <strong class="text-brand">PRINT INDIA</strong>,
+                        where textile artistry and tradition have been
+                        our guiding principles for over three decades.
+
+                        With 30 years of experience, we have built our
+                        expertise around vibrant colours, intricate designs
+                        and quality printing.
+
+                    </p>
+
+                    <p class="text-gray-600 text-sm leading-8 mt-5">
+
+                        Our journey began with a passion for quality
+                        and a commitment to preserving the rich heritage
+                        of Indian textile printing. Over the years,
+                        this passion has grown into a trusted name
+                        for creative and specialised printing services.
+
+                    </p>
+
+                    <p class="text-gray-600 text-sm leading-8 mt-5">
+
+                        Founded by <strong class="text-brand">Salam Bhai</strong>,
+                        PRINT INDIA continues to carry forward a legacy
+                        built on craftsmanship, dedication and attention
+                        to detail.
+
+                    </p>
+
                 </div>
+
+
+                <!-- RIGHT IMAGE -->
+
+                <div class="reveal-right">
+
+                    <div class="about-image-wrap rounded-xl">
+
+                        <img src="images/about.png"
+                            alt="Print India Textile Printing"
+                            class="about-image w-full h-[450px] object-cover"
+                            loading="lazy">
+
+                    </div>
+
+                    <div class="flex items-center gap-4 mt-6">
+
+                        <div class="w-14 h-[2px] bg-gold"></div>
+
+                        <p class="font-heading italic text-xl text-brand">
+                            Passion for Printing. Pride in Tradition.
+                        </p>
+
+                    </div>
+
+                </div>
+
             </div>
+
         </div>
 
-        <div class="footer-bottom">
-            <p>© 2025 Print India Sarees. All Rights Reserved.</p>
+    </section>
+
+
+    <!-- EXPERIENCE STATS -->
+
+    <section class="bg-brand py-16">
+
+        <div class="max-w-7xl mx-auto px-5 lg:px-8">
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+
+                <div class="stat-card reveal text-center text-white">
+
+                    <h3 class="font-heading text-4xl sm:text-5xl text-gold">
+                        30+
+                    </h3>
+
+                    <p class="text-white/80 text-xs sm:text-sm mt-3">
+                        Years of Experience
+                    </p>
+
+                </div>
+
+
+                <div class="stat-card reveal text-center text-white">
+
+                    <h3 class="font-heading text-4xl sm:text-5xl text-gold">
+                        3
+                    </h3>
+
+                    <p class="text-white/80 text-xs sm:text-sm mt-3">
+                        Specialised Services
+                    </p>
+
+                </div>
+
+
+                <div class="stat-card reveal text-center text-white">
+
+                    <h3 class="font-heading text-4xl sm:text-5xl text-gold">
+                        1
+                    </h3>
+
+                    <p class="text-white/80 text-xs sm:text-sm mt-3">
+                        Dedicated Vision
+                    </p>
+
+                </div>
+
+
+                <div class="stat-card reveal text-center text-white">
+
+                    <h3 class="font-heading text-4xl sm:text-5xl text-gold">
+                        100%
+                    </h3>
+
+                    <p class="text-white/80 text-xs sm:text-sm mt-3">
+                        Commitment to Quality
+                    </p>
+
+                </div>
+
+            </div>
+
         </div>
+
+    </section>
+
+
+    <!-- OUR EXPERTISE -->
+
+    <section class="py-24 bg-cream">
+
+        <div class="max-w-7xl mx-auto px-5 lg:px-8">
+
+
+            <div class="text-center max-w-2xl mx-auto mb-14 reveal">
+
+                <span class="text-gold uppercase tracking-[4px] text-xs font-semibold">
+                    What We Do
+                </span>
+
+                <h2 class="font-heading text-4xl sm:text-5xl mt-4 text-gray-900">
+                    Our Expertise
+                </h2>
+
+                <div class="w-16 h-[2px] bg-gold mx-auto mt-6"></div>
+
+                <p class="text-gray-500 text-sm leading-7 mt-6">
+                    From beautiful saree designs to customised textile
+                    printing, our expertise brings creative ideas to life.
+                </p>
+
+            </div>
+
+
+            <div class="grid md:grid-cols-3 gap-8">
+
+
+                <!-- SAREE PRINTING -->
+
+                <div class="service-card reveal bg-white rounded-xl p-8">
+
+                    <div class="service-icon w-16 h-16 rounded-full bg-soft text-brand flex items-center justify-center text-3xl">
+                        ✿
+                    </div>
+
+                    <h3 class="font-heading text-2xl font-semibold mt-7">
+                        Saree Printing
+                    </h3>
+
+                    <p class="text-gray-500 text-sm leading-7 mt-4">
+                        We specialise in creating beautiful saree prints,
+                        transforming fabrics into elegant pieces of
+                        wearable art with vibrant colours and
+                        attractive patterns.
+                    </p>
+
+                    <div class="w-10 h-[2px] bg-gold mt-7"></div>
+
+                </div>
+
+
+                <!-- CUSTOM SKETCHING -->
+
+                <div class="service-card reveal bg-white rounded-xl p-8">
+
+                    <div class="service-icon w-16 h-16 rounded-full bg-soft text-brand flex items-center justify-center text-3xl">
+                        ✎
+                    </div>
+
+                    <h3 class="font-heading text-2xl font-semibold mt-7">
+                        Custom Sketching
+                    </h3>
+
+                    <p class="text-gray-500 text-sm leading-7 mt-4">
+                        Our custom sketching services help develop
+                        unique patterns and creative designs
+                        according to individual ideas and requirements.
+                    </p>
+
+                    <div class="w-10 h-[2px] bg-gold mt-7"></div>
+
+                </div>
+
+
+                <!-- BAG PRINTING -->
+
+                <div class="service-card reveal bg-white rounded-xl p-8">
+
+                    <div class="service-icon w-16 h-16 rounded-full bg-soft text-brand flex items-center justify-center text-3xl">
+                        ◈
+                    </div>
+
+                    <h3 class="font-heading text-2xl font-semibold mt-7">
+                        Bag Printing
+                    </h3>
+
+                    <p class="text-gray-500 text-sm leading-7 mt-4">
+                        We extend our printing expertise to shopper bags
+                        and side bags, creating attractive prints
+                        that complement your brand's identity.
+                    </p>
+
+                    <div class="w-10 h-[2px] bg-gold mt-7"></div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOUNDER SECTION -->
+
+    <section class="py-24 bg-white">
+
+        <div class="max-w-7xl mx-auto px-5 lg:px-8">
+
+            <div class="grid md:grid-cols-2 gap-14 items-center">
+
+                <div class="reveal-left">
+
+                    <span class="text-gold uppercase tracking-[4px] text-xs font-semibold">
+                        The Inspiration Behind Our Journey
+                    </span>
+
+                    <h2 class="font-heading text-4xl sm:text-5xl mt-5 leading-tight">
+                        A Legacy Built on
+                        <span class="text-brand italic">Passion.</span>
+                    </h2>
+
+                    <div class="w-16 h-[2px] bg-gold mt-7"></div>
+
+                    <p class="text-gray-600 text-sm leading-8 mt-7">
+
+                        Every successful journey begins with a vision.
+                        For PRINT INDIA, that vision came from our founder,
+                        <strong class="text-brand">Salam Bhai</strong>.
+
+                    </p>
+
+                    <p class="text-gray-600 text-sm leading-8 mt-5">
+
+                        His dedication to textile printing, commitment
+                        to quality and passion for creative work have
+                        shaped the foundation of our business.
+
+                        His vision continues to inspire our approach
+                        to craftsmanship and customer relationships.
+
+                    </p>
+
+                    <div class="mt-8">
+
+                        <h3 class="font-heading text-2xl text-brand">
+                            Salam Bhai
+                        </h3>
+
+                        <p class="text-gray-500 text-xs uppercase tracking-[2px] mt-2">
+                            Founder, Print India
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="reveal-right">
+
+                    <div class="bg-soft rounded-xl p-8 sm:p-12">
+
+                        <div class="text-6xl font-heading text-gold">
+                            “
+                        </div>
+
+                        <p class="font-heading text-2xl sm:text-3xl leading-relaxed text-gray-800 italic">
+
+                            Quality is not just what we deliver.
+                            It is the promise behind everything we create.
+
+                        </p>
+
+                        <div class="w-14 h-[2px] bg-brand mt-8"></div>
+
+                        <p class="text-brand font-semibold text-sm mt-5">
+                            Our Philosophy
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- MISSION & VISION -->
+
+    <section class="py-24 bg-soft">
+
+        <div class="max-w-7xl mx-auto px-5 lg:px-8">
+
+            <div class="text-center mb-14 reveal">
+
+                <span class="text-gold uppercase tracking-[4px] text-xs font-semibold">
+                    What Drives Us
+                </span>
+
+                <h2 class="font-heading text-4xl sm:text-5xl mt-4">
+                    Our Mission & Vision
+                </h2>
+
+            </div>
+
+
+            <div class="grid md:grid-cols-2 gap-8">
+
+
+                <!-- MISSION -->
+
+                <div class="reveal bg-white p-9 sm:p-12 rounded-xl">
+
+                    <div class="text-brand text-4xl mb-6">
+                        ◈
+                    </div>
+
+                    <h3 class="font-heading text-3xl font-semibold">
+                        Our Mission
+                    </h3>
+
+                    <div class="w-14 h-[2px] bg-gold mt-5"></div>
+
+                    <p class="text-gray-600 text-sm leading-8 mt-7">
+
+                        To deliver exceptional and reliable printing
+                        services for sarees, bags and custom textiles
+                        through a deep commitment to craftsmanship,
+                        client collaboration and artistic excellence.
+
+                        We strive to honour the legacy of our founder,
+                        Salam Bhai, by ensuring every design is executed
+                        with precision, passion and a personal touch.
+
+                    </p>
+
+                </div>
+
+
+                <!-- VISION -->
+
+                <div class="reveal bg-white p-9 sm:p-12 rounded-xl">
+
+                    <div class="text-brand text-4xl mb-6">
+                        ✧
+                    </div>
+
+                    <h3 class="font-heading text-3xl font-semibold">
+                        Our Vision
+                    </h3>
+
+                    <div class="w-14 h-[2px] bg-gold mt-5"></div>
+
+                    <p class="text-gray-600 text-sm leading-8 mt-7">
+
+                        To be the most trusted partner for textile
+                        artistry, blending three decades of heritage
+                        with innovative printing solutions.
+
+                        We aim to bring creative ideas to life on
+                        every fabric we touch while continuing to
+                        build lasting relationships through quality
+                        and dedication.
+
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- CTA SECTION -->
+
+    <section class="bg-brand py-24 px-5">
+
+        <div class="max-w-4xl mx-auto text-center text-white reveal">
+
+            <span class="text-gold uppercase tracking-[4px] text-xs font-semibold">
+                Let's Create Something Beautiful
+            </span>
+
+            <h2 class="font-heading text-4xl sm:text-6xl mt-6 leading-tight">
+                Have a Creative Idea?
+            </h2>
+
+            <p class="text-white/75 text-sm leading-8 mt-6 max-w-xl mx-auto">
+                Whether you need saree printing, custom sketching
+                or bag printing, we would love to hear about your project.
+            </p>
+
+            <a href="contact.html"
+                class="primary-btn inline-block bg-white text-brand px-9 py-4 rounded-full mt-9 text-sm font-semibold">
+
+                Let's Talk About Your Project →
+
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+
+    <footer class="bg-[#211318] text-white pt-16">
+
+        <div class="max-w-7xl mx-auto px-5 lg:px-8">
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-12 pb-14">
+
+
+                <!-- BRAND -->
+
+                <div>
+
+                    <h2 class="font-heading text-3xl font-bold">
+                        Print <span class="text-gold">India</span>
+                    </h2>
+
+                    <p class="text-gray-400 text-sm leading-8 mt-5 max-w-sm">
+
+                        Bringing creativity to life through quality
+                        textile printing, beautiful designs and
+                        three decades of experience.
+
+                    </p>
+
+                </div>
+
+
+                <!-- QUICK LINKS -->
+
+                <div>
+
+                    <h3 class="font-semibold text-lg mb-6">
+                        Quick Links
+                    </h3>
+
+                    <ul class="space-y-4 text-sm text-gray-400">
+
+                        <li><a href="index.html" class="footer-link">Home</a></li>
+
+                        <li><a href="about.html" class="footer-link">About Us</a></li>
+
+                        <li><a href="products.html" class="footer-link">Our Products</a></li>
+
+                        <li><a href="contact.html" class="footer-link">Contact Us</a></li>
+
+                    </ul>
+
+                </div>
+
+
+                <!-- SOCIAL -->
+
+                <div>
+
+                    <h3 class="font-semibold text-lg mb-6">
+                        Stay Connected
+                    </h3>
+
+                    <p class="text-gray-400 text-sm leading-7">
+                        Follow us to explore our latest designs and collections.
+                    </p>
+
+                    <div class="flex gap-3 mt-6">
+
+                        <a href="#"
+                            aria-label="Facebook"
+                            class="social-link w-11 h-11 rounded-full bg-white/10 flex items-center justify-center font-semibold">
+                            f
+                        </a>
+
+                        <a href="#"
+                            aria-label="Instagram"
+                            class="social-link w-11 h-11 rounded-full bg-white/10 flex items-center justify-center text-xl">
+                            ◎
+                        </a>
+
+                        <a href="#"
+                            aria-label="WhatsApp"
+                            class="social-link w-11 h-11 rounded-full bg-white/10 flex items-center justify-center text-lg">
+                            ☎
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+            <!-- COPYRIGHT -->
+
+            <div class="border-t border-white/10 py-7 flex flex-col sm:flex-row justify-between items-center gap-3">
+
+                <p class="text-gray-500 text-xs">
+                    © 2026 Print India Sarees. All Rights Reserved.
+                </p>
+
+                <p class="text-gray-500 text-xs">
+                    Crafted with care and dedication.
+                </p>
+
+            </div>
+
+        </div>
+
     </footer>
 
-    <script src="script.js"></script>
+
+    <!-- BACK TO TOP -->
+
+    <button id="back-top"
+        class="back-top fixed bottom-6 right-6 z-40 w-12 h-12 rounded-full bg-brand text-white shadow-lg hover:bg-brandDark"
+        aria-label="Back to top">
+
+        ↑
+
+    </button>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script>
+
+        // PAGE LOADER
+
+        window.addEventListener('load', function () {
+
+            const loader = document.getElementById('page-loader');
+
+            setTimeout(function () {
+                loader.classList.add('hide');
+            }, 400);
+
+        });
+
+
+        // MOBILE MENU
+
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuToggle.addEventListener('click', function () {
+
+            mobileMenu.classList.toggle('open');
+
+            const isOpen = mobileMenu.classList.contains('open');
+
+            menuToggle.innerHTML = isOpen ? '&times;' : '☰';
+
+            menuToggle.setAttribute('aria-expanded', isOpen);
+
+        });
+
+
+        // CLOSE MOBILE MENU
+
+        mobileMenu.querySelectorAll('a').forEach(function (link) {
+
+            link.addEventListener('click', function () {
+
+                mobileMenu.classList.remove('open');
+
+                menuToggle.innerHTML = '☰';
+
+                menuToggle.setAttribute('aria-expanded', 'false');
+
+            });
+
+        });
+
+
+        // NAVBAR SCROLL EFFECT
+
+        const navbar = document.getElementById('navbar');
+
+        function updateNavbar() {
+
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+
+        }
+
+        window.addEventListener('scroll', updateNavbar, { passive: true });
+
+        updateNavbar();
+
+
+        // SCROLL REVEAL
+
+        const revealElements = document.querySelectorAll(
+            '.reveal, .reveal-left, .reveal-right'
+        );
+
+        if ('IntersectionObserver' in window) {
+
+            const revealObserver = new IntersectionObserver(function (entries, observer) {
+
+                entries.forEach(function (entry) {
+
+                    if (entry.isIntersecting) {
+
+                        entry.target.classList.add('show');
+
+                        observer.unobserve(entry.target);
+
+                    }
+
+                });
+
+            }, {
+                threshold: 0.12,
+                rootMargin: '0px 0px -35px 0px'
+            });
+
+            revealElements.forEach(function (element) {
+                revealObserver.observe(element);
+            });
+
+        } else {
+
+            revealElements.forEach(function (element) {
+                element.classList.add('show');
+            });
+
+        }
+
+
+        // BACK TO TOP
+
+        const backTop = document.getElementById('back-top');
+
+        window.addEventListener('scroll', function () {
+
+            if (window.scrollY > 400) {
+                backTop.classList.add('visible');
+            } else {
+                backTop.classList.remove('visible');
+            }
+
+        }, { passive: true });
+
+        backTop.addEventListener('click', function () {
+
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+
+        });
+
+    </script>
+
 </body>
-
-
 </html>
-
-

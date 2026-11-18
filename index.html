@@ -1,30 +1,43 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Print India | Premium Saree Collection</title>
-    <meta name="description" content="Explore the beautiful collection of premium silk sarees at Print India. Discover elegant traditional sarees at affordable prices.">
+    <title>Print India | Discover Timeless Saree Elegance</title>
 
+    <meta name="description"
+        content="Discover beautiful and premium saree collections at Print India. Elegant traditional and designer sarees at affordable prices.">
+
+    <meta name="theme-color" content="#761b32">
+
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind Configuration -->
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        brand: '#861b35',
-                        gold: '#c49a52',
-                        cream: '#fffaf5'
+                        brand: '#761b32',
+                        brandDark: '#521020',
+                        gold: '#c49a59',
+                        cream: '#faf7f2',
+                        soft: '#f2ebe2'
                     },
+
                     fontFamily: {
-                        sans: ['Poppins', 'sans-serif'],
+                        sans: ['DM Sans', 'sans-serif'],
                         heading: ['Playfair Display', 'serif']
                     }
                 }
@@ -33,396 +46,1335 @@
     </script>
 
     <style>
-        html { scroll-behavior: smooth; }
+
+        /* =========================
+           GLOBAL
+        ========================= */
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 90px;
+        }
 
         body {
-            font-family: 'Poppins', sans-serif;
+            font-family: 'DM Sans', sans-serif;
+            background: #faf7f2;
+            overflow-x: hidden;
         }
 
-        .hero {
-            background:
-                linear-gradient(90deg, rgba(25,10,15,.82), rgba(25,10,15,.25)),
-                url('images/s1.jpeg') center/cover no-repeat;
+        ::selection {
+            background: #761b32;
+            color: white;
         }
 
-        .product-card img {
-            transition: transform .6s ease;
+        .font-heading {
+            font-family: 'Playfair Display', serif;
         }
 
-        .product-card:hover img {
-            transform: scale(1.08);
+        /* =========================
+           PAGE LOADER
+        ========================= */
+
+        .page-loader {
+            position: fixed;
+            inset: 0;
+            background: #761b32;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity .6s ease, visibility .6s ease;
+        }
+
+        .page-loader.hide {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader-content {
+            text-align: center;
+            color: white;
+        }
+
+        .loader-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            animation: loaderPulse 1.5s infinite;
+        }
+
+        .loader-line {
+            width: 100px;
+            height: 2px;
+            background: rgba(255,255,255,.2);
+            margin: 20px auto;
+            overflow: hidden;
+        }
+
+        .loader-line::after {
+            content: '';
+            display: block;
+            height: 100%;
+            width: 40%;
+            background: #d8b77e;
+            animation: loading 1.2s infinite ease-in-out;
+        }
+
+        @keyframes loading {
+            from { transform: translateX(-100%); }
+            to { transform: translateX(300%); }
+        }
+
+        @keyframes loaderPulse {
+            50% { opacity: .5; }
+        }
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        .main-nav {
+            transition: all .35s ease;
+        }
+
+        .main-nav.scrolled {
+            background: rgba(255,255,255,.96);
+            box-shadow: 0 5px 25px rgba(0,0,0,.07);
+            backdrop-filter: blur(12px);
+        }
+
+        .nav-link {
+            position: relative;
+            padding: 8px 0;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #c49a59;
+            transition: width .3s ease;
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
         }
 
         .mobile-menu {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: max-height .4s ease, opacity .3s ease;
+        }
+
+        .mobile-menu.open {
+            max-height: 350px;
+            opacity: 1;
+        }
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            min-height: 690px;
+            position: relative;
+            overflow: hidden;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(30, 12, 17, .83) 0%,
+                    rgba(30, 12, 17, .56) 48%,
+                    rgba(30, 12, 17, .12) 100%
+                ),
+                url('images/s1.jpeg') center 35% / cover no-repeat;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                0deg,
+                rgba(20, 8, 12, .3),
+                transparent 40%
+            );
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-tag {
+            opacity: 0;
+            animation: fadeUp .8s .3s forwards;
+        }
+
+        .hero-title {
+            opacity: 0;
+            animation: fadeUp .9s .5s forwards;
+        }
+
+        .hero-description {
+            opacity: 0;
+            animation: fadeUp .9s .7s forwards;
+        }
+
+        .hero-buttons {
+            opacity: 0;
+            animation: fadeUp .9s .9s forwards;
+        }
+
+        .hero-decoration {
+            animation: float 5s ease-in-out infinite;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(35px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        /* =========================
+           BUTTONS
+        ========================= */
+
+        .primary-btn {
+            position: relative;
+            overflow: hidden;
+            transition: all .35s ease;
+        }
+
+        .primary-btn:hover {
+            background: #fff;
+            color: #761b32;
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(0,0,0,.15);
+        }
+
+        .outline-btn {
+            transition: all .35s ease;
+        }
+
+        .outline-btn:hover {
+            background: white;
+            color: #761b32;
+            transform: translateY(-3px);
+        }
+
+        /* =========================
+           SECTION REVEAL
+        ========================= */
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(35px);
+            transition: opacity .8s ease, transform .8s ease;
+        }
+
+        .reveal.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-35px);
+            transition: all .8s ease;
+        }
+
+        .reveal-left.show {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(35px);
+            transition: all .8s ease;
+        }
+
+        .reveal-right.show {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* =========================
+           FEATURES
+        ========================= */
+
+        .feature-item {
+            transition: all .35s ease;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-7px);
+        }
+
+        .feature-icon {
+            transition: transform .4s ease;
+        }
+
+        .feature-item:hover .feature-icon {
+            transform: rotateY(180deg);
+        }
+
+        /* =========================
+           PRODUCTS
+        ========================= */
+
+        .product-card {
+            background: white;
+            transition: transform .45s ease, box-shadow .45s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 22px 45px rgba(70, 35, 35, .12);
+        }
+
+        .product-image {
+            overflow: hidden;
+            position: relative;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform .8s cubic-bezier(.2,.7,.2,1);
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.08);
+        }
+
+        .product-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(40, 10, 20, .12);
+            opacity: 0;
+            transition: opacity .4s ease;
+        }
+
+        .product-card:hover .product-overlay {
+            opacity: 1;
+        }
+
+        .product-action {
             transition: all .3s ease;
         }
+
+        .product-action:hover {
+            letter-spacing: .5px;
+        }
+
+        /* =========================
+           COLLECTION BANNER
+        ========================= */
+
+        .collection-banner {
+            background:
+                linear-gradient(rgba(40, 10, 20, .78), rgba(40, 10, 20, .78)),
+                url('images/s3.jpeg') center / cover no-repeat;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        .footer-link {
+            transition: all .3s ease;
+        }
+
+        .footer-link:hover {
+            color: #d8b77e;
+            padding-left: 5px;
+        }
+
+        .social-link {
+            transition: all .3s ease;
+        }
+
+        .social-link:hover {
+            background: #c49a59;
+            color: #521020;
+            transform: translateY(-5px);
+        }
+
+        /* =========================
+           BACK TO TOP
+        ========================= */
+
+        .back-top {
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(15px);
+            transition: all .3s ease;
+        }
+
+        .back-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        /* =========================
+           ACCESSIBILITY
+        ========================= */
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: .01ms !important;
+                animation-iteration-count: 1 !important;
+                scroll-behavior: auto !important;
+                transition-duration: .01ms !important;
+            }
+
+            .reveal,
+            .reveal-left,
+            .reveal-right {
+                opacity: 1;
+                transform: none;
+            }
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media(max-width: 640px) {
+            .hero {
+                min-height: 600px;
+                background-position: 60% center;
+            }
+        }
+
     </style>
 </head>
 
-<body class="bg-cream text-gray-800">
+<body>
 
-    <!-- Top Bar -->
-    <div class="bg-brand text-white text-center py-2 px-3 text-xs sm:text-sm tracking-wide">
-        ✨ Discover Elegance | Premium Sarees at Affordable Prices ✨
+    <!-- PAGE LOADER -->
+
+    <div class="page-loader" id="page-loader">
+        <div class="loader-content">
+            <div class="loader-logo">Print India</div>
+            <div class="loader-line"></div>
+            <p class="text-xs tracking-[4px] uppercase text-white/70">
+                Elegance Forever
+            </p>
+        </div>
     </div>
 
-    <!-- Navbar -->
-    <header class="bg-white sticky top-0 z-50 shadow-sm">
-        <nav class="max-w-7xl mx-auto px-5 lg:px-8 h-20 flex items-center justify-between">
+
+    <!-- TOP BAR -->
+
+    <div class="bg-brand text-white text-center py-2 px-3 text-[11px] sm:text-xs tracking-wider">
+        A BEAUTIFUL EXPRESSION OF INDIAN TRADITION
+    </div>
+
+
+    <!-- NAVBAR -->
+
+    <header class="main-nav fixed top-0 left-0 w-full z-50 mt-[34px]" id="navbar">
+
+        <nav class="max-w-7xl mx-auto px-5 lg:px-8 h-[82px] flex items-center justify-between">
+
+            <!-- LOGO -->
 
             <a href="index.html" class="flex items-center gap-2">
-                <img src="images/logo.png" alt="Print India Logo"
+
+                <img src="images/logo.png"
+                    alt="Print India"
                     class="h-12 w-auto object-contain">
+
                 <div>
-                    <h2 class="font-heading text-2xl font-bold text-brand">Print India</h2>
-                    <p class="text-[9px] tracking-[3px] text-gold uppercase">Elegance Forever</p>
+                    <h2 class="font-heading text-2xl font-bold text-brand">
+                        Print India
+                    </h2>
+
+                    <p class="text-[9px] tracking-[3px] text-gold uppercase">
+                        Elegance Forever
+                    </p>
                 </div>
+
             </a>
 
+
+            <!-- DESKTOP NAVIGATION -->
+
+            <ul class="hidden md:flex items-center gap-9 text-sm font-medium text-gray-700">
+
+                <li>
+                    <a href="index.html" class="nav-link active text-brand">Home</a>
+                </li>
+
+                <li>
+                    <a href="about.html" class="nav-link hover:text-brand">About</a>
+                </li>
+
+                <li>
+                    <a href="products.html" class="nav-link hover:text-brand">Products</a>
+                </li>
+
+                <li>
+                    <a href="contact.html" class="nav-link hover:text-brand">Contact</a>
+                </li>
+
+                <li>
+                    <a href="products.html"
+                        class="bg-brand text-white px-6 py-3 rounded-full hover:bg-brandDark transition duration-300">
+                        Explore Collection →
+                    </a>
+                </li>
+
+            </ul>
+
+
+            <!-- MOBILE BUTTON -->
+
             <button id="menu-toggle"
-                class="md:hidden text-3xl text-brand"
-                aria-label="Toggle navigation"
+                class="md:hidden text-brand text-3xl"
+                aria-label="Open menu"
                 aria-expanded="false">
                 ☰
             </button>
 
-            <ul id="nav-links"
-                class="hidden md:flex items-center gap-9 font-medium text-sm">
+        </nav>
+
+
+        <!-- MOBILE MENU -->
+
+        <div id="mobile-menu" class="mobile-menu md:hidden bg-white shadow-lg">
+
+            <ul class="flex flex-col px-7 py-5 gap-5 text-sm font-medium">
 
                 <li><a href="index.html" class="text-brand">Home</a></li>
-                <li><a href="about.html" class="hover:text-brand transition">About</a></li>
-                <li><a href="products.html" class="hover:text-brand transition">Products</a></li>
-                <li><a href="contact.html" class="hover:text-brand transition">Contact</a></li>
+
+                <li><a href="about.html" class="hover:text-brand">About</a></li>
+
+                <li><a href="products.html" class="hover:text-brand">Products</a></li>
+
+                <li><a href="contact.html" class="hover:text-brand">Contact</a></li>
 
                 <li>
-                    <a href="products.html"
-                        class="bg-brand text-white px-6 py-3 rounded-full hover:bg-[#641327] transition">
+                    <a href="products.html" class="inline-block bg-brand text-white px-6 py-3 rounded-full">
                         Shop Now →
                     </a>
                 </li>
-            </ul>
-        </nav>
 
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="mobile-menu hidden md:hidden bg-white border-t">
-            <ul class="flex flex-col px-6 py-4 gap-4 text-sm font-medium">
-                <li><a href="index.html" class="text-brand">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="products.html">Products</a></li>
-                <li><a href="contact.html">Contact</a></li>
             </ul>
+
         </div>
+
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero min-h-[550px] md:min-h-[650px] flex items-center">
 
-        <div class="max-w-7xl mx-auto w-full px-6 lg:px-8 py-20">
+    <!-- HERO SECTION -->
 
-            <div class="max-w-2xl text-white">
+    <section class="hero flex items-center">
 
-                <span class="text-gold uppercase tracking-[4px] text-xs sm:text-sm font-semibold">
-                    Tradition Meets Fashion
-                </span>
+        <div class="max-w-7xl mx-auto w-full px-6 lg:px-8 py-24">
 
-                <h1 class="font-heading text-5xl sm:text-6xl lg:text-7xl font-bold leading-tight mt-6">
-                    Elegance Woven
-                    <span class="text-gold italic">In Every</span>
-                    Thread.
+            <div class="hero-content max-w-2xl text-white">
+
+                <div class="hero-tag flex items-center gap-3 mb-7">
+
+                    <span class="w-10 h-[1px] bg-gold"></span>
+
+                    <span class="text-gold uppercase tracking-[4px] text-xs font-semibold">
+                        The Art of Indian Elegance
+                    </span>
+
+                </div>
+
+
+                <h1 class="hero-title font-heading text-5xl sm:text-6xl lg:text-[76px] font-semibold leading-[1.13]">
+
+                    Wear Your
+                    <span class="block text-gold italic">Tradition.</span>
+
+                    Own Your
+                    <span class="block">Elegance.</span>
+
                 </h1>
 
-                <p class="text-gray-200 mt-6 leading-8 text-sm sm:text-base max-w-lg">
-                    Discover our exclusive collection of beautiful sarees.
-                    Celebrate every occasion with timeless elegance and
-                    traditional Indian craftsmanship.
+
+                <p class="hero-description text-white/80 text-sm sm:text-base leading-8 mt-7 max-w-lg">
+
+                    Every saree tells a story. Discover a collection
+                    that celebrates timeless Indian craftsmanship,
+                    graceful designs and the beauty of tradition.
+
                 </p>
 
-                <div class="flex flex-wrap gap-4 mt-9">
+
+                <div class="hero-buttons flex flex-wrap gap-4 mt-9">
+
                     <a href="products.html"
-                        class="bg-brand hover:bg-white hover:text-brand text-white px-8 py-4 rounded-full font-medium transition">
-                        Explore Collection →
+                        class="primary-btn bg-brand px-8 py-4 rounded-full text-sm font-semibold">
+
+                        Explore Collection
+                        <span class="ml-2">→</span>
+
                     </a>
 
                     <a href="about.html"
-                        class="border border-white hover:bg-white hover:text-brand px-8 py-4 rounded-full font-medium transition">
-                        Discover More
+                        class="outline-btn border border-white/70 px-8 py-4 rounded-full text-sm font-semibold">
+
+                        Our Story
+
                     </a>
+
                 </div>
 
             </div>
+
         </div>
-    </section>
 
-    <!-- Features -->
-    <section class="max-w-7xl mx-auto px-5 lg:px-8 py-12">
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
 
-            <div class="text-center">
-                <div class="text-3xl mb-3">✦</div>
-                <h3 class="font-semibold text-sm">Premium Quality</h3>
-                <p class="text-xs text-gray-500 mt-1">Carefully Selected Fabrics</p>
-            </div>
+        <!-- DECORATION -->
 
-            <div class="text-center">
-                <div class="text-3xl mb-3">♡</div>
-                <h3 class="font-semibold text-sm">Elegant Designs</h3>
-                <p class="text-xs text-gray-500 mt-1">Traditional & Modern</p>
-            </div>
+        <div class="hero-decoration hidden lg:block absolute right-[9%] bottom-[13%] z-10">
 
-            <div class="text-center">
-                <div class="text-3xl mb-3">₹</div>
-                <h3 class="font-semibold text-sm">Affordable Prices</h3>
-                <p class="text-xs text-gray-500 mt-1">Value for Your Money</p>
-            </div>
+            <div class="w-28 h-28 rounded-full border border-gold/60 flex items-center justify-center">
 
-            <div class="text-center">
-                <div class="text-3xl mb-3">♧</div>
-                <h3 class="font-semibold text-sm">Customer First</h3>
-                <p class="text-xs text-gray-500 mt-1">Service You Can Trust</p>
+                <div class="w-20 h-20 rounded-full border border-white/40 flex items-center justify-center">
+
+                    <span class="font-heading text-4xl text-gold">P</span>
+
+                </div>
+
             </div>
 
         </div>
+
     </section>
 
-    <!-- Products Section -->
-    <section class="py-20 bg-white" id="products">
+
+    <!-- FEATURES -->
+
+    <section class="bg-white py-14 border-b border-gray-100">
 
         <div class="max-w-7xl mx-auto px-5 lg:px-8">
 
-            <div class="text-center mb-12">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-9">
+
+                <div class="feature-item reveal text-center">
+
+                    <div class="feature-icon text-3xl text-gold mb-4">✧</div>
+
+                    <h3 class="font-semibold text-sm">Quality You Deserve</h3>
+
+                    <p class="text-gray-500 text-xs mt-2">
+                        Carefully selected fabrics
+                    </p>
+
+                </div>
+
+
+                <div class="feature-item reveal text-center">
+
+                    <div class="feature-icon text-3xl text-gold mb-4">❀</div>
+
+                    <h3 class="font-semibold text-sm">Beautiful Designs</h3>
+
+                    <p class="text-gray-500 text-xs mt-2">
+                        Traditional and modern styles
+                    </p>
+
+                </div>
+
+
+                <div class="feature-item reveal text-center">
+
+                    <div class="feature-icon text-3xl text-gold mb-4">₹</div>
+
+                    <h3 class="font-semibold text-sm">Fair Prices</h3>
+
+                    <p class="text-gray-500 text-xs mt-2">
+                        Elegance within your budget
+                    </p>
+
+                </div>
+
+
+                <div class="feature-item reveal text-center">
+
+                    <div class="feature-icon text-3xl text-gold mb-4">♡</div>
+
+                    <h3 class="font-semibold text-sm">Personal Care</h3>
+
+                    <p class="text-gray-500 text-xs mt-2">
+                        Customer satisfaction matters
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- PRODUCTS -->
+
+    <section class="py-24 bg-cream" id="products">
+
+        <div class="max-w-7xl mx-auto px-5 lg:px-8">
+
+
+            <!-- SECTION HEADING -->
+
+            <div class="text-center max-w-2xl mx-auto mb-14 reveal">
+
                 <span class="text-gold uppercase tracking-[4px] text-xs font-semibold">
-                    Our Collection
+                    A World of Elegance
                 </span>
 
-                <h2 class="font-heading text-4xl sm:text-5xl font-bold mt-3 text-gray-900">
-                    Explore Our Sarees
+                <h2 class="font-heading text-4xl sm:text-5xl text-gray-900 mt-4">
+                    Our Beautiful Collection
                 </h2>
 
-                <p class="text-gray-500 text-sm mt-4 max-w-xl mx-auto">
-                    Beautiful designs, rich colours and timeless elegance.
-                    Find the perfect saree for every special moment.
+                <div class="w-16 h-[2px] bg-gold mx-auto mt-6"></div>
+
+                <p class="text-gray-500 text-sm leading-7 mt-6">
+                    From everyday grace to special celebrations,
+                    discover sarees that make every moment memorable.
                 </p>
+
             </div>
+
+
+            <!-- PRODUCT GRID -->
 
             <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
 
-                <!-- Product 1 -->
-                <div class="product-card group bg-cream rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition">
 
-                    <div class="relative h-[350px] overflow-hidden">
+                <!-- PRODUCT 1 -->
+
+                <article class="product-card reveal rounded-xl overflow-hidden">
+
+                    <div class="product-image h-[380px]">
+
                         <img src="images/s1.jpeg"
-                            alt="Premium Silk Saree"
-                            class="w-full h-full object-cover">
+                            alt="Elegant premium silk saree"
+                            loading="lazy">
 
-                        <span class="absolute top-4 left-4 bg-brand text-white text-xs px-4 py-2 rounded-full">
+                        <div class="product-overlay"></div>
+
+                        <span class="absolute top-5 left-5 bg-brand text-white text-[10px] tracking-wider uppercase px-4 py-2">
                             Featured
                         </span>
+
                     </div>
 
-                    <div class="p-6">
-                        <p class="text-gold text-xs tracking-widest uppercase">Premium Collection</p>
 
-                        <h3 class="font-heading text-2xl font-bold mt-2">
+                    <div class="p-6">
+
+                        <p class="text-gold text-[10px] uppercase tracking-[2px] font-semibold">
+                            Premium Collection
+                        </p>
+
+                        <h3 class="font-heading text-2xl mt-2 font-semibold">
                             Elegant Silk Saree
                         </h3>
 
-                        <p class="text-brand font-semibold text-xl mt-3">₹2,499</p>
+                        <div class="flex items-center justify-between mt-4">
 
-                        <div class="flex gap-3 mt-5">
+                            <p class="text-brand font-semibold text-xl">
+                                ₹2,499
+                            </p>
+
+                            <span class="text-gold text-sm">★★★★★</span>
+
+                        </div>
+
+                        <div class="flex gap-3 mt-6">
+
                             <a href="contact.html"
-                                class="flex-1 text-center bg-brand text-white py-3 rounded-full text-sm hover:bg-[#641327] transition">
+                                class="product-action flex-1 text-center bg-brand text-white text-xs font-semibold py-3.5 rounded-full hover:bg-brandDark">
+
                                 Buy Now
+
                             </a>
 
                             <a href="products.html"
-                                class="flex-1 text-center border border-brand text-brand py-3 rounded-full text-sm hover:bg-brand hover:text-white transition">
+                                class="product-action flex-1 text-center border border-brand text-brand text-xs font-semibold py-3.5 rounded-full hover:bg-brand hover:text-white">
+
                                 View Details
+
                             </a>
+
                         </div>
+
                     </div>
-                </div>
 
-                <!-- Product 2 -->
-                <div class="product-card group bg-cream rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition">
+                </article>
 
-                    <div class="relative h-[350px] overflow-hidden">
+
+                <!-- PRODUCT 2 -->
+
+                <article class="product-card reveal rounded-xl overflow-hidden">
+
+                    <div class="product-image h-[380px]">
+
                         <img src="images/s3.jpeg"
-                            alt="Designer Traditional Saree"
-                            class="w-full h-full object-cover">
+                            alt="Designer traditional saree"
+                            loading="lazy">
+
+                        <div class="product-overlay"></div>
+
                     </div>
+
 
                     <div class="p-6">
-                        <p class="text-gold text-xs tracking-widest uppercase">Traditional Collection</p>
 
-                        <h3 class="font-heading text-2xl font-bold mt-2">
+                        <p class="text-gold text-[10px] uppercase tracking-[2px] font-semibold">
+                            Traditional Collection
+                        </p>
+
+                        <h3 class="font-heading text-2xl mt-2 font-semibold">
                             Designer Saree
                         </h3>
 
-                        <p class="text-brand font-semibold text-xl mt-3">₹2,499</p>
+                        <div class="flex items-center justify-between mt-4">
 
-                        <div class="flex gap-3 mt-5">
+                            <p class="text-brand font-semibold text-xl">
+                                ₹2,499
+                            </p>
+
+                            <span class="text-gold text-sm">★★★★★</span>
+
+                        </div>
+
+                        <div class="flex gap-3 mt-6">
+
                             <a href="contact.html"
-                                class="flex-1 text-center bg-brand text-white py-3 rounded-full text-sm hover:bg-[#641327] transition">
+                                class="product-action flex-1 text-center bg-brand text-white text-xs font-semibold py-3.5 rounded-full hover:bg-brandDark">
+
                                 Buy Now
+
                             </a>
 
                             <a href="products.html"
-                                class="flex-1 text-center border border-brand text-brand py-3 rounded-full text-sm hover:bg-brand hover:text-white transition">
+                                class="product-action flex-1 text-center border border-brand text-brand text-xs font-semibold py-3.5 rounded-full hover:bg-brand hover:text-white">
+
                                 View Details
+
                             </a>
+
                         </div>
+
                     </div>
-                </div>
 
-                <!-- Product 3 -->
-                <div class="product-card group bg-cream rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition">
+                </article>
 
-                    <div class="relative h-[350px] overflow-hidden">
+
+                <!-- PRODUCT 3 -->
+
+                <article class="product-card reveal rounded-xl overflow-hidden">
+
+                    <div class="product-image h-[380px]">
+
                         <img src="images/s4.jpeg"
-                            alt="Beautiful Silk Saree"
-                            class="w-full h-full object-cover">
+                            alt="Royal silk saree"
+                            loading="lazy">
+
+                        <div class="product-overlay"></div>
+
                     </div>
+
 
                     <div class="p-6">
-                        <p class="text-gold text-xs tracking-widest uppercase">Exclusive Collection</p>
 
-                        <h3 class="font-heading text-2xl font-bold mt-2">
+                        <p class="text-gold text-[10px] uppercase tracking-[2px] font-semibold">
+                            Exclusive Collection
+                        </p>
+
+                        <h3 class="font-heading text-2xl mt-2 font-semibold">
                             Royal Silk Saree
                         </h3>
 
-                        <p class="text-brand font-semibold text-xl mt-3">₹2,499</p>
+                        <div class="flex items-center justify-between mt-4">
 
-                        <div class="flex gap-3 mt-5">
+                            <p class="text-brand font-semibold text-xl">
+                                ₹2,499
+                            </p>
+
+                            <span class="text-gold text-sm">★★★★★</span>
+
+                        </div>
+
+                        <div class="flex gap-3 mt-6">
+
                             <a href="contact.html"
-                                class="flex-1 text-center bg-brand text-white py-3 rounded-full text-sm hover:bg-[#641327] transition">
+                                class="product-action flex-1 text-center bg-brand text-white text-xs font-semibold py-3.5 rounded-full hover:bg-brandDark">
+
                                 Buy Now
+
                             </a>
 
                             <a href="products.html"
-                                class="flex-1 text-center border border-brand text-brand py-3 rounded-full text-sm hover:bg-brand hover:text-white transition">
+                                class="product-action flex-1 text-center border border-brand text-brand text-xs font-semibold py-3.5 rounded-full hover:bg-brand hover:text-white">
+
                                 View Details
+
                             </a>
+
                         </div>
+
                     </div>
-                </div>
+
+                </article>
 
             </div>
 
-            <div class="text-center mt-12">
+
+            <!-- VIEW ALL -->
+
+            <div class="text-center mt-14 reveal">
+
                 <a href="products.html"
-                    class="inline-block border border-brand text-brand px-9 py-4 rounded-full hover:bg-brand hover:text-white transition font-medium">
-                    View All Products →
+                    class="inline-flex items-center gap-3 border border-brand text-brand px-9 py-4 rounded-full text-sm font-semibold hover:bg-brand hover:text-white transition duration-300">
+
+                    View All Products
+
+                    <span>→</span>
+
                 </a>
+
             </div>
 
         </div>
+
     </section>
 
-    <!-- CTA Section -->
-    <section class="bg-brand py-20 px-5">
-        <div class="max-w-4xl mx-auto text-center text-white">
 
-            <span class="text-gold uppercase tracking-[4px] text-xs">
-                Your Style, Your Story
+    <!-- COLLECTION BANNER -->
+
+    <section class="collection-banner py-28 px-5 text-center text-white">
+
+        <div class="max-w-3xl mx-auto reveal">
+
+            <span class="text-gold text-xs uppercase tracking-[4px] font-semibold">
+                Beyond Fashion, A Tradition
             </span>
 
-            <h2 class="font-heading text-4xl sm:text-5xl font-bold mt-5">
-                Make Every Occasion Special
+            <h2 class="font-heading text-4xl sm:text-6xl font-semibold mt-6 leading-tight">
+                Grace in Every Drape.
+                <span class="block italic text-gold">Beauty in Every Detail.</span>
             </h2>
 
-            <p class="text-white/80 mt-5 text-sm sm:text-base leading-7">
-                Find your perfect saree and bring home the beauty of Indian tradition.
+            <p class="text-white/75 text-sm leading-7 mt-6 max-w-xl mx-auto">
+                Find the saree that reflects your personality.
+                Celebrate your style with the timeless charm of Indian tradition.
             </p>
 
-            <a href="contact.html"
-                class="inline-block mt-8 bg-white text-brand px-9 py-4 rounded-full font-semibold hover:bg-gold hover:text-white transition">
-                Contact Us →
+            <a href="products.html"
+                class="inline-block mt-9 bg-gold text-white px-9 py-4 rounded-full text-sm font-semibold hover:bg-white hover:text-brand transition duration-300">
+
+                Discover Our Collection →
+
             </a>
 
         </div>
+
     </section>
 
-    <!-- Footer -->
-    <footer class="bg-[#1b1013] text-white pt-16">
 
-        <div class="max-w-7xl mx-auto px-5 lg:px-8">
+    <!-- ABOUT SECTION -->
 
-            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-12 pb-12">
+    <section class="py-24 bg-white">
 
-                <!-- About -->
-                <div>
-                    <h2 class="font-heading text-3xl font-bold text-white">
-                        Print <span class="text-gold">India</span>
-                    </h2>
+        <div class="max-w-7xl mx-auto px-5 lg:px-8 grid md:grid-cols-2 gap-14 items-center">
 
-                    <p class="text-gray-400 text-sm leading-7 mt-5 max-w-xs">
-                        Elegant sarees crafted with love and tradition.
-                        Discover timeless beauty with Print India.
-                    </p>
-                </div>
 
-                <!-- Links -->
-                <div>
-                    <h3 class="font-semibold text-lg mb-5">Quick Links</h3>
+            <div class="reveal-left">
 
-                    <ul class="space-y-3 text-sm text-gray-400">
-                        <li><a href="index.html" class="hover:text-gold transition">Home</a></li>
-                        <li><a href="about.html" class="hover:text-gold transition">About Us</a></li>
-                        <li><a href="products.html" class="hover:text-gold transition">Our Products</a></li>
-                        <li><a href="contact.html" class="hover:text-gold transition">Contact Us</a></li>
-                    </ul>
-                </div>
+                <div class="relative">
 
-                <!-- Social -->
-                <div>
-                    <h3 class="font-semibold text-lg mb-5">Follow Us</h3>
+                    <img src="images/s4.jpeg"
+                        alt="Beautiful Indian saree collection"
+                        loading="lazy"
+                        class="w-full h-[450px] object-cover rounded-xl">
 
-                    <p class="text-gray-400 text-sm mb-5">
-                        Stay connected with us for the latest collections.
-                    </p>
+                    <div class="absolute -bottom-5 -right-4 bg-brand text-white p-6 hidden sm:block">
 
-                    <div class="flex gap-3">
-                        <a href="#" aria-label="Facebook"
-                            class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand transition">
-                            f
-                        </a>
+                        <p class="font-heading text-3xl">Print India</p>
 
-                        <a href="#" aria-label="Instagram"
-                            class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand transition">
-                            ◎
-                        </a>
+                        <p class="text-[10px] tracking-[3px] uppercase text-gold mt-2">
+                            Elegance Forever
+                        </p>
 
-                        <a href="#" aria-label="WhatsApp"
-                            class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand transition">
-                            ☎
-                        </a>
                     </div>
+
                 </div>
 
             </div>
 
-            <div class="border-t border-white/10 py-6 text-center">
-                <p class="text-gray-500 text-xs sm:text-sm">
-                    © 2026 Print India Sarees. All Rights Reserved.
+
+            <div class="reveal-right">
+
+                <span class="text-gold uppercase tracking-[4px] text-xs font-semibold">
+                    Our Philosophy
+                </span>
+
+                <h2 class="font-heading text-4xl sm:text-5xl mt-5 leading-tight">
+                    Tradition That Never Goes Out of Style.
+                </h2>
+
+                <div class="w-16 h-[2px] bg-gold mt-7"></div>
+
+                <p class="text-gray-500 text-sm leading-8 mt-7">
+                    At Print India, we believe that a saree is more than
+                    just an outfit. It is a beautiful expression of
+                    culture, confidence and individuality.
                 </p>
+
+                <p class="text-gray-500 text-sm leading-8 mt-4">
+                    Our collection brings together timeless traditional
+                    charm and beautiful designs, helping you find
+                    something special for every occasion.
+                </p>
+
+                <a href="about.html"
+                    class="inline-flex items-center gap-3 text-brand font-semibold text-sm mt-8 group">
+
+                    Learn More About Us
+
+                    <span class="transition-transform group-hover:translate-x-2">→</span>
+
+                </a>
+
             </div>
 
         </div>
+
+    </section>
+
+
+    <!-- CTA -->
+
+    <section class="bg-soft py-20 px-5">
+
+        <div class="max-w-4xl mx-auto text-center reveal">
+
+            <span class="text-gold uppercase tracking-[4px] text-xs font-semibold">
+                Let Us Help You Find Your Style
+            </span>
+
+            <h2 class="font-heading text-4xl sm:text-5xl mt-5 text-gray-900">
+                Looking for Something Special?
+            </h2>
+
+            <p class="text-gray-500 text-sm mt-5 leading-7 max-w-xl mx-auto">
+                Get in touch with us and explore a collection
+                that brings elegance to every occasion.
+            </p>
+
+            <a href="contact.html"
+                class="inline-block bg-brand text-white px-9 py-4 rounded-full mt-8 text-sm font-semibold hover:bg-brandDark transition duration-300">
+
+                Get in Touch →
+
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+
+    <footer class="bg-[#211318] text-white pt-16">
+
+        <div class="max-w-7xl mx-auto px-5 lg:px-8">
+
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-12 pb-14">
+
+
+                <!-- BRAND -->
+
+                <div>
+
+                    <h2 class="font-heading text-3xl font-bold">
+                        Print <span class="text-gold">India</span>
+                    </h2>
+
+                    <p class="text-gray-400 text-sm leading-8 mt-5 max-w-sm">
+                        Bringing you beautiful sarees that celebrate
+                        the richness of Indian tradition and the
+                        elegance of every woman.
+                    </p>
+
+                </div>
+
+
+                <!-- QUICK LINKS -->
+
+                <div>
+
+                    <h3 class="font-semibold text-lg mb-6">
+                        Quick Links
+                    </h3>
+
+                    <ul class="space-y-4 text-sm text-gray-400">
+
+                        <li><a href="index.html" class="footer-link">Home</a></li>
+
+                        <li><a href="about.html" class="footer-link">About Us</a></li>
+
+                        <li><a href="products.html" class="footer-link">Our Products</a></li>
+
+                        <li><a href="contact.html" class="footer-link">Contact Us</a></li>
+
+                    </ul>
+
+                </div>
+
+
+                <!-- SOCIAL -->
+
+                <div>
+
+                    <h3 class="font-semibold text-lg mb-6">
+                        Stay Connected
+                    </h3>
+
+                    <p class="text-gray-400 text-sm leading-7">
+                        Follow us to explore our latest designs and collections.
+                    </p>
+
+                    <div class="flex gap-3 mt-6">
+
+                        <a href="#"
+                            aria-label="Facebook"
+                            class="social-link w-11 h-11 rounded-full bg-white/10 flex items-center justify-center font-semibold">
+                            f
+                        </a>
+
+                        <a href="#"
+                            aria-label="Instagram"
+                            class="social-link w-11 h-11 rounded-full bg-white/10 flex items-center justify-center text-xl">
+                            ◎
+                        </a>
+
+                        <a href="#"
+                            aria-label="WhatsApp"
+                            class="social-link w-11 h-11 rounded-full bg-white/10 flex items-center justify-center text-lg">
+                            ☎
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+            <!-- COPYRIGHT -->
+
+            <div class="border-t border-white/10 py-7 flex flex-col sm:flex-row justify-between items-center gap-3">
+
+                <p class="text-gray-500 text-xs">
+                    © 2026 Print India Sarees. All Rights Reserved.
+                </p>
+
+                <p class="text-gray-500 text-xs">
+                    Made with care and elegance.
+                </p>
+
+            </div>
+
+        </div>
+
     </footer>
 
-    <!-- Mobile Menu Script -->
+
+    <!-- BACK TO TOP -->
+
+    <button id="back-top"
+        class="back-top fixed bottom-6 right-6 z-40 w-12 h-12 rounded-full bg-brand text-white shadow-lg hover:bg-brandDark"
+        aria-label="Back to top">
+
+        ↑
+
+    </button>
+
+
+    <!-- JAVASCRIPT -->
+
     <script>
+
+        // =========================
+        // PAGE LOADER
+        // =========================
+
+        window.addEventListener('load', function () {
+
+            const loader = document.getElementById('page-loader');
+
+            setTimeout(function () {
+                loader.classList.add('hide');
+            }, 400);
+
+        });
+
+
+        // =========================
+        // MOBILE NAVIGATION
+        // =========================
+
         const menuToggle = document.getElementById('menu-toggle');
         const mobileMenu = document.getElementById('mobile-menu');
 
         menuToggle.addEventListener('click', function () {
-            mobileMenu.classList.toggle('hidden');
 
-            const isOpen = !mobileMenu.classList.contains('hidden');
+            mobileMenu.classList.toggle('open');
+
+            const isOpen = mobileMenu.classList.contains('open');
 
             menuToggle.innerHTML = isOpen ? '&times;' : '☰';
+
             menuToggle.setAttribute('aria-expanded', isOpen);
+
         });
+
+
+        // Close menu after clicking a link
+
+        mobileMenu.querySelectorAll('a').forEach(function (link) {
+
+            link.addEventListener('click', function () {
+
+                mobileMenu.classList.remove('open');
+
+                menuToggle.innerHTML = '☰';
+
+                menuToggle.setAttribute('aria-expanded', 'false');
+
+            });
+
+        });
+
+
+        // =========================
+        // NAVBAR SCROLL EFFECT
+        // =========================
+
+        const navbar = document.getElementById('navbar');
+
+        // Account for the top announcement bar.
+        function updateNavbar() {
+
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+
+        }
+
+        window.addEventListener('scroll', updateNavbar, { passive: true });
+
+        updateNavbar();
+
+
+        // =========================
+        // SCROLL REVEAL ANIMATION
+        // =========================
+
+        const revealElements = document.querySelectorAll(
+            '.reveal, .reveal-left, .reveal-right'
+        );
+
+        if ('IntersectionObserver' in window) {
+
+            const revealObserver = new IntersectionObserver(function (entries, observer) {
+
+                entries.forEach(function (entry) {
+
+                    if (entry.isIntersecting) {
+
+                        entry.target.classList.add('show');
+
+                        observer.unobserve(entry.target);
+
+                    }
+
+                });
+
+            }, {
+                threshold: 0.12,
+                rootMargin: '0px 0px -40px 0px'
+            });
+
+            revealElements.forEach(function (element) {
+                revealObserver.observe(element);
+            });
+
+        } else {
+
+            revealElements.forEach(function (element) {
+                element.classList.add('show');
+            });
+
+        }
+
+
+        // =========================
+        // BACK TO TOP
+        // =========================
+
+        const backTop = document.getElementById('back-top');
+
+        window.addEventListener('scroll', function () {
+
+            if (window.scrollY > 400) {
+                backTop.classList.add('visible');
+            } else {
+                backTop.classList.remove('visible');
+            }
+
+        }, { passive: true });
+
+        backTop.addEventListener('click', function () {
+
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+
+        });
+
     </script>
 
 </body>

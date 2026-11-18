@@ -3,13 +3,14 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Print India | Discover Timeless Saree Elegance</title>
+    <title>About Us | Print India - Textile Printing Excellence</title>
 
     <meta name="description"
-        content="Discover beautiful and premium saree collections at Print India. Elegant traditional and designer sarees at affordable prices.">
+        content="Learn about Print India, founded by Salam Bhai, with 30 years of experience in saree printing, custom sketching, and bag printing.">
 
     <meta name="theme-color" content="#761b32">
 
@@ -35,7 +36,6 @@
                         cream: '#faf7f2',
                         soft: '#f2ebe2'
                     },
-
                     fontFamily: {
                         sans: ['DM Sans', 'sans-serif'],
                         heading: ['Playfair Display', 'serif']
@@ -47,17 +47,13 @@
 
     <style>
 
-        /* =========================
-           GLOBAL
-        ========================= */
-
         * {
             box-sizing: border-box;
         }
 
         html {
             scroll-behavior: smooth;
-            scroll-padding-top: 90px;
+            scroll-padding-top: 100px;
         }
 
         body {
@@ -66,18 +62,16 @@
             overflow-x: hidden;
         }
 
+        .font-heading {
+            font-family: 'Playfair Display', serif;
+        }
+
         ::selection {
             background: #761b32;
             color: white;
         }
 
-        .font-heading {
-            font-family: 'Playfair Display', serif;
-        }
-
-        /* =========================
-           PAGE LOADER
-        ========================= */
+        /* PAGE LOADER */
 
         .page-loader {
             position: fixed;
@@ -95,32 +89,28 @@
             visibility: hidden;
         }
 
-        .loader-content {
-            text-align: center;
-            color: white;
-        }
-
         .loader-logo {
             font-family: 'Playfair Display', serif;
             font-size: 36px;
-            animation: loaderPulse 1.5s infinite;
+            color: white;
+            animation: pulse 1.5s infinite;
         }
 
         .loader-line {
             width: 100px;
             height: 2px;
             background: rgba(255,255,255,.2);
-            margin: 20px auto;
+            margin: 18px auto;
             overflow: hidden;
         }
 
         .loader-line::after {
             content: '';
             display: block;
-            height: 100%;
             width: 40%;
-            background: #d8b77e;
-            animation: loading 1.2s infinite ease-in-out;
+            height: 100%;
+            background: #c49a59;
+            animation: loading 1.2s infinite;
         }
 
         @keyframes loading {
@@ -128,13 +118,11 @@
             to { transform: translateX(300%); }
         }
 
-        @keyframes loaderPulse {
+        @keyframes pulse {
             50% { opacity: .5; }
         }
 
-        /* =========================
-           NAVBAR
-        ========================= */
+        /* NAVBAR */
 
         .main-nav {
             transition: all .35s ease;
@@ -154,10 +142,10 @@
         .nav-link::after {
             content: '';
             position: absolute;
-            bottom: 0;
             left: 0;
-            width: 0;
+            bottom: 0;
             height: 2px;
+            width: 0;
             background: #c49a59;
             transition: width .3s ease;
         }
@@ -179,64 +167,24 @@
             opacity: 1;
         }
 
-        /* =========================
-           HERO
-        ========================= */
+        /* HERO */
 
-        .hero {
-            min-height: 690px;
+        .about-hero {
+            min-height: 430px;
             position: relative;
-            overflow: hidden;
-
+            display: flex;
+            align-items: center;
             background:
                 linear-gradient(
                     90deg,
-                    rgba(30, 12, 17, .83) 0%,
-                    rgba(30, 12, 17, .56) 48%,
-                    rgba(30, 12, 17, .12) 100%
+                    rgba(35,10,19,.88),
+                    rgba(35,10,19,.45)
                 ),
-                url('images/s1.jpeg') center 35% / cover no-repeat;
-        }
-
-        .hero::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(
-                0deg,
-                rgba(20, 8, 12, .3),
-                transparent 40%
-            );
-            pointer-events: none;
+                url('images/about.png') center / cover no-repeat;
         }
 
         .hero-content {
-            position: relative;
-            z-index: 2;
-        }
-
-        .hero-tag {
-            opacity: 0;
-            animation: fadeUp .8s .3s forwards;
-        }
-
-        .hero-title {
-            opacity: 0;
-            animation: fadeUp .9s .5s forwards;
-        }
-
-        .hero-description {
-            opacity: 0;
-            animation: fadeUp .9s .7s forwards;
-        }
-
-        .hero-buttons {
-            opacity: 0;
-            animation: fadeUp .9s .9s forwards;
-        }
-
-        .hero-decoration {
-            animation: float 5s ease-in-out infinite;
+            animation: fadeUp .9s .2s both;
         }
 
         @keyframes fadeUp {
@@ -244,53 +192,18 @@
                 opacity: 0;
                 transform: translateY(35px);
             }
-
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
-        }
-
-        /* =========================
-           BUTTONS
-        ========================= */
-
-        .primary-btn {
-            position: relative;
-            overflow: hidden;
-            transition: all .35s ease;
-        }
-
-        .primary-btn:hover {
-            background: #fff;
-            color: #761b32;
-            transform: translateY(-3px);
-            box-shadow: 0 12px 25px rgba(0,0,0,.15);
-        }
-
-        .outline-btn {
-            transition: all .35s ease;
-        }
-
-        .outline-btn:hover {
-            background: white;
-            color: #761b32;
-            transform: translateY(-3px);
-        }
-
-        /* =========================
-           SECTION REVEAL
-        ========================= */
+        /* REVEAL ANIMATION */
 
         .reveal {
             opacity: 0;
             transform: translateY(35px);
-            transition: opacity .8s ease, transform .8s ease;
+            transition: all .8s ease;
         }
 
         .reveal.show {
@@ -320,96 +233,70 @@
             transform: translateX(0);
         }
 
-        /* =========================
-           FEATURES
-        ========================= */
+        /* IMAGE */
 
-        .feature-item {
-            transition: all .35s ease;
-        }
-
-        .feature-item:hover {
-            transform: translateY(-7px);
-        }
-
-        .feature-icon {
-            transition: transform .4s ease;
-        }
-
-        .feature-item:hover .feature-icon {
-            transform: rotateY(180deg);
-        }
-
-        /* =========================
-           PRODUCTS
-        ========================= */
-
-        .product-card {
-            background: white;
-            transition: transform .45s ease, box-shadow .45s ease;
-        }
-
-        .product-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 22px 45px rgba(70, 35, 35, .12);
-        }
-
-        .product-image {
+        .about-image-wrap {
             overflow: hidden;
             position: relative;
         }
 
-        .product-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform .8s cubic-bezier(.2,.7,.2,1);
+        .about-image {
+            transition: transform .8s ease;
         }
 
-        .product-card:hover .product-image img {
-            transform: scale(1.08);
+        .about-image-wrap:hover .about-image {
+            transform: scale(1.05);
         }
 
-        .product-overlay {
-            position: absolute;
-            inset: 0;
-            background: rgba(40, 10, 20, .12);
-            opacity: 0;
-            transition: opacity .4s ease;
+        /* STATS */
+
+        .stat-card {
+            transition: all .35s ease;
         }
 
-        .product-card:hover .product-overlay {
-            opacity: 1;
+        .stat-card:hover {
+            transform: translateY(-7px);
         }
 
-        .product-action {
+        /* SERVICE CARDS */
+
+        .service-card {
+            transition: all .4s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-9px);
+            box-shadow: 0 20px 40px rgba(70,30,40,.1);
+        }
+
+        .service-icon {
+            transition: transform .4s ease;
+        }
+
+        .service-card:hover .service-icon {
+            transform: rotateY(180deg);
+        }
+
+        /* BUTTON */
+
+        .primary-btn {
             transition: all .3s ease;
         }
 
-        .product-action:hover {
-            letter-spacing: .5px;
+        .primary-btn:hover {
+            background: #521020;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(118,27,50,.2);
         }
 
-        /* =========================
-           COLLECTION BANNER
-        ========================= */
-
-        .collection-banner {
-            background:
-                linear-gradient(rgba(40, 10, 20, .78), rgba(40, 10, 20, .78)),
-                url('images/s3.jpeg') center / cover no-repeat;
-        }
-
-        /* =========================
-           FOOTER
-        ========================= */
+        /* FOOTER */
 
         .footer-link {
             transition: all .3s ease;
         }
 
         .footer-link:hover {
-            color: #d8b77e;
+            color: #c49a59;
             padding-left: 5px;
         }
 
@@ -423,9 +310,7 @@
             transform: translateY(-5px);
         }
 
-        /* =========================
-           BACK TO TOP
-        ========================= */
+        /* BACK TO TOP */
 
         .back-top {
             opacity: 0;
@@ -440,9 +325,7 @@
             transform: translateY(0);
         }
 
-        /* =========================
-           ACCESSIBILITY
-        ========================= */
+        /* ACCESSIBILITY */
 
         @media (prefers-reduced-motion: reduce) {
             *,
@@ -450,8 +333,8 @@
             *::after {
                 animation-duration: .01ms !important;
                 animation-iteration-count: 1 !important;
-                scroll-behavior: auto !important;
                 transition-duration: .01ms !important;
+                scroll-behavior: auto !important;
             }
 
             .reveal,
@@ -462,45 +345,51 @@
             }
         }
 
-        /* =========================
-           RESPONSIVE
-        ========================= */
-
         @media(max-width: 640px) {
-            .hero {
-                min-height: 600px;
-                background-position: 60% center;
+            .about-hero {
+                min-height: 380px;
+                background-position: center;
             }
         }
 
     </style>
+
 </head>
+
 
 <body>
 
     <!-- PAGE LOADER -->
 
     <div class="page-loader" id="page-loader">
-        <div class="loader-content">
-            <div class="loader-logo">Print India</div>
+
+        <div class="text-center">
+
+            <div class="loader-logo">
+                Print India
+            </div>
+
             <div class="loader-line"></div>
+
             <p class="text-xs tracking-[4px] uppercase text-white/70">
-                Elegance Forever
+                Our Story, Our Tradition
             </p>
+
         </div>
+
     </div>
 
 
     <!-- TOP BAR -->
 
     <div class="bg-brand text-white text-center py-2 px-3 text-[11px] sm:text-xs tracking-wider">
-        A BEAUTIFUL EXPRESSION OF INDIAN TRADITION
+        THREE DECADES OF TEXTILE PRINTING EXCELLENCE
     </div>
 
 
     <!-- NAVBAR -->
 
-    <header class="main-nav fixed top-0 left-0 w-full z-50 mt-[34px]" id="navbar">
+    <header class="main-nav fixed top-[34px] left-0 w-full z-50" id="navbar">
 
         <nav class="max-w-7xl mx-auto px-5 lg:px-8 h-[82px] flex items-center justify-between">
 
@@ -509,7 +398,7 @@
             <a href="index.html" class="flex items-center gap-2">
 
                 <img src="images/logo.png"
-                    alt="Print India"
+                    alt="Print India Logo"
                     class="h-12 w-auto object-contain">
 
                 <div>
@@ -525,16 +414,16 @@
             </a>
 
 
-            <!-- DESKTOP NAVIGATION -->
+            <!-- DESKTOP MENU -->
 
             <ul class="hidden md:flex items-center gap-9 text-sm font-medium text-gray-700">
 
                 <li>
-                    <a href="index.html" class="nav-link active text-brand">Home</a>
+                    <a href="index.html" class="nav-link hover:text-brand">Home</a>
                 </li>
 
                 <li>
-                    <a href="about.html" class="nav-link hover:text-brand">About</a>
+                    <a href="about.html" class="nav-link active text-brand">About</a>
                 </li>
 
                 <li>
@@ -555,11 +444,11 @@
             </ul>
 
 
-            <!-- MOBILE BUTTON -->
+            <!-- MOBILE TOGGLE -->
 
             <button id="menu-toggle"
                 class="md:hidden text-brand text-3xl"
-                aria-label="Open menu"
+                aria-label="Toggle navigation"
                 aria-expanded="false">
                 ☰
             </button>
@@ -573,19 +462,13 @@
 
             <ul class="flex flex-col px-7 py-5 gap-5 text-sm font-medium">
 
-                <li><a href="index.html" class="text-brand">Home</a></li>
+                <li><a href="index.html">Home</a></li>
 
-                <li><a href="about.html" class="hover:text-brand">About</a></li>
+                <li><a href="about.html" class="text-brand">About</a></li>
 
-                <li><a href="products.html" class="hover:text-brand">Products</a></li>
+                <li><a href="products.html">Products</a></li>
 
-                <li><a href="contact.html" class="hover:text-brand">Contact</a></li>
-
-                <li>
-                    <a href="products.html" class="inline-block bg-brand text-white px-6 py-3 rounded-full">
-                        Shop Now →
-                    </a>
-                </li>
+                <li><a href="contact.html">Contact</a></li>
 
             </ul>
 
@@ -596,76 +479,41 @@
 
     <!-- HERO SECTION -->
 
-    <section class="hero flex items-center">
+    <section class="about-hero">
 
         <div class="max-w-7xl mx-auto w-full px-6 lg:px-8 py-24">
 
             <div class="hero-content max-w-2xl text-white">
 
-                <div class="hero-tag flex items-center gap-3 mb-7">
+                <div class="flex items-center gap-3 mb-6">
 
                     <span class="w-10 h-[1px] bg-gold"></span>
 
                     <span class="text-gold uppercase tracking-[4px] text-xs font-semibold">
-                        The Art of Indian Elegance
+                        Get to Know Us
                     </span>
 
                 </div>
 
-
-                <h1 class="hero-title font-heading text-5xl sm:text-6xl lg:text-[76px] font-semibold leading-[1.13]">
-
-                    Wear Your
-                    <span class="block text-gold italic">Tradition.</span>
-
-                    Own Your
-                    <span class="block">Elegance.</span>
-
+                <h1 class="font-heading text-5xl sm:text-6xl lg:text-7xl font-semibold">
+                    Our Story,
+                    <span class="block italic text-gold">Our Tradition.</span>
                 </h1>
 
-
-                <p class="hero-description text-white/80 text-sm sm:text-base leading-8 mt-7 max-w-lg">
-
-                    Every saree tells a story. Discover a collection
-                    that celebrates timeless Indian craftsmanship,
-                    graceful designs and the beauty of tradition.
-
+                <p class="text-white/80 text-sm sm:text-base leading-8 mt-6 max-w-lg">
+                    Three decades of passion, creativity and dedication
+                    to the art of textile printing.
                 </p>
 
+                <div class="flex items-center gap-3 mt-8 text-sm">
 
-                <div class="hero-buttons flex flex-wrap gap-4 mt-9">
-
-                    <a href="products.html"
-                        class="primary-btn bg-brand px-8 py-4 rounded-full text-sm font-semibold">
-
-                        Explore Collection
-                        <span class="ml-2">→</span>
-
+                    <a href="index.html" class="text-white/70 hover:text-gold">
+                        Home
                     </a>
 
-                    <a href="about.html"
-                        class="outline-btn border border-white/70 px-8 py-4 rounded-full text-sm font-semibold">
+                    <span class="text-gold">/</span>
 
-                        Our Story
-
-                    </a>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- DECORATION -->
-
-        <div class="hero-decoration hidden lg:block absolute right-[9%] bottom-[13%] z-10">
-
-            <div class="w-28 h-28 rounded-full border border-gold/60 flex items-center justify-center">
-
-                <div class="w-20 h-20 rounded-full border border-white/40 flex items-center justify-center">
-
-                    <span class="font-heading text-4xl text-gold">P</span>
+                    <span class="text-gold">About Us</span>
 
                 </div>
 
@@ -676,61 +524,152 @@
     </section>
 
 
-    <!-- FEATURES -->
+    <!-- ABOUT INTRO -->
 
-    <section class="bg-white py-14 border-b border-gray-100">
+    <section class="py-24 bg-white">
 
         <div class="max-w-7xl mx-auto px-5 lg:px-8">
 
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-9">
+            <div class="grid md:grid-cols-2 gap-14 items-center">
 
-                <div class="feature-item reveal text-center">
+                <!-- LEFT CONTENT -->
 
-                    <div class="feature-icon text-3xl text-gold mb-4">✧</div>
+                <div class="reveal-left">
 
-                    <h3 class="font-semibold text-sm">Quality You Deserve</h3>
+                    <span class="text-gold uppercase tracking-[4px] text-xs font-semibold">
+                        Who We Are
+                    </span>
 
-                    <p class="text-gray-500 text-xs mt-2">
-                        Carefully selected fabrics
+                    <h2 class="font-heading text-4xl sm:text-5xl mt-5 leading-tight text-gray-900">
+
+                        Bringing Fabric
+                        <span class="text-brand italic">to Life.</span>
+
+                    </h2>
+
+                    <div class="w-16 h-[2px] bg-gold mt-7"></div>
+
+                    <p class="text-gray-600 text-sm leading-8 mt-7">
+
+                        Welcome to <strong class="text-brand">PRINT INDIA</strong>,
+                        where textile artistry and tradition have been
+                        our guiding principles for over three decades.
+
+                        With 30 years of experience, we have built our
+                        expertise around vibrant colours, intricate designs
+                        and quality printing.
+
+                    </p>
+
+                    <p class="text-gray-600 text-sm leading-8 mt-5">
+
+                        Our journey began with a passion for quality
+                        and a commitment to preserving the rich heritage
+                        of Indian textile printing. Over the years,
+                        this passion has grown into a trusted name
+                        for creative and specialised printing services.
+
+                    </p>
+
+                    <p class="text-gray-600 text-sm leading-8 mt-5">
+
+                        Founded by <strong class="text-brand">Salam Bhai</strong>,
+                        PRINT INDIA continues to carry forward a legacy
+                        built on craftsmanship, dedication and attention
+                        to detail.
+
                     </p>
 
                 </div>
 
 
-                <div class="feature-item reveal text-center">
+                <!-- RIGHT IMAGE -->
 
-                    <div class="feature-icon text-3xl text-gold mb-4">❀</div>
+                <div class="reveal-right">
 
-                    <h3 class="font-semibold text-sm">Beautiful Designs</h3>
+                    <div class="about-image-wrap rounded-xl">
 
-                    <p class="text-gray-500 text-xs mt-2">
-                        Traditional and modern styles
+                        <img src="images/about.png"
+                            alt="Print India Textile Printing"
+                            class="about-image w-full h-[450px] object-cover"
+                            loading="lazy">
+
+                    </div>
+
+                    <div class="flex items-center gap-4 mt-6">
+
+                        <div class="w-14 h-[2px] bg-gold"></div>
+
+                        <p class="font-heading italic text-xl text-brand">
+                            Passion for Printing. Pride in Tradition.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- EXPERIENCE STATS -->
+
+    <section class="bg-brand py-16">
+
+        <div class="max-w-7xl mx-auto px-5 lg:px-8">
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+
+                <div class="stat-card reveal text-center text-white">
+
+                    <h3 class="font-heading text-4xl sm:text-5xl text-gold">
+                        30+
+                    </h3>
+
+                    <p class="text-white/80 text-xs sm:text-sm mt-3">
+                        Years of Experience
                     </p>
 
                 </div>
 
 
-                <div class="feature-item reveal text-center">
+                <div class="stat-card reveal text-center text-white">
 
-                    <div class="feature-icon text-3xl text-gold mb-4">₹</div>
+                    <h3 class="font-heading text-4xl sm:text-5xl text-gold">
+                        3
+                    </h3>
 
-                    <h3 class="font-semibold text-sm">Fair Prices</h3>
-
-                    <p class="text-gray-500 text-xs mt-2">
-                        Elegance within your budget
+                    <p class="text-white/80 text-xs sm:text-sm mt-3">
+                        Specialised Services
                     </p>
 
                 </div>
 
 
-                <div class="feature-item reveal text-center">
+                <div class="stat-card reveal text-center text-white">
 
-                    <div class="feature-icon text-3xl text-gold mb-4">♡</div>
+                    <h3 class="font-heading text-4xl sm:text-5xl text-gold">
+                        1
+                    </h3>
 
-                    <h3 class="font-semibold text-sm">Personal Care</h3>
+                    <p class="text-white/80 text-xs sm:text-sm mt-3">
+                        Dedicated Vision
+                    </p>
 
-                    <p class="text-gray-500 text-xs mt-2">
-                        Customer satisfaction matters
+                </div>
+
+
+                <div class="stat-card reveal text-center text-white">
+
+                    <h3 class="font-heading text-4xl sm:text-5xl text-gold">
+                        100%
+                    </h3>
+
+                    <p class="text-white/80 text-xs sm:text-sm mt-3">
+                        Commitment to Quality
                     </p>
 
                 </div>
@@ -742,232 +681,105 @@
     </section>
 
 
-    <!-- PRODUCTS -->
+    <!-- OUR EXPERTISE -->
 
-    <section class="py-24 bg-cream" id="products">
+    <section class="py-24 bg-cream">
 
         <div class="max-w-7xl mx-auto px-5 lg:px-8">
 
-
-            <!-- SECTION HEADING -->
 
             <div class="text-center max-w-2xl mx-auto mb-14 reveal">
 
                 <span class="text-gold uppercase tracking-[4px] text-xs font-semibold">
-                    A World of Elegance
+                    What We Do
                 </span>
 
-                <h2 class="font-heading text-4xl sm:text-5xl text-gray-900 mt-4">
-                    Our Beautiful Collection
+                <h2 class="font-heading text-4xl sm:text-5xl mt-4 text-gray-900">
+                    Our Expertise
                 </h2>
 
                 <div class="w-16 h-[2px] bg-gold mx-auto mt-6"></div>
 
                 <p class="text-gray-500 text-sm leading-7 mt-6">
-                    From everyday grace to special celebrations,
-                    discover sarees that make every moment memorable.
+                    From beautiful saree designs to customised textile
+                    printing, our expertise brings creative ideas to life.
                 </p>
 
             </div>
 
 
-            <!-- PRODUCT GRID -->
-
-            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="grid md:grid-cols-3 gap-8">
 
 
-                <!-- PRODUCT 1 -->
+                <!-- SAREE PRINTING -->
 
-                <article class="product-card reveal rounded-xl overflow-hidden">
+                <div class="service-card reveal bg-white rounded-xl p-8">
 
-                    <div class="product-image h-[380px]">
-
-                        <img src="images/s1.jpeg"
-                            alt="Elegant premium silk saree"
-                            loading="lazy">
-
-                        <div class="product-overlay"></div>
-
-                        <span class="absolute top-5 left-5 bg-brand text-white text-[10px] tracking-wider uppercase px-4 py-2">
-                            Featured
-                        </span>
-
+                    <div class="service-icon w-16 h-16 rounded-full bg-soft text-brand flex items-center justify-center text-3xl">
+                        ✿
                     </div>
 
+                    <h3 class="font-heading text-2xl font-semibold mt-7">
+                        Saree Printing
+                    </h3>
 
-                    <div class="p-6">
+                    <p class="text-gray-500 text-sm leading-7 mt-4">
+                        We specialise in creating beautiful saree prints,
+                        transforming fabrics into elegant pieces of
+                        wearable art with vibrant colours and
+                        attractive patterns.
+                    </p>
 
-                        <p class="text-gold text-[10px] uppercase tracking-[2px] font-semibold">
-                            Premium Collection
-                        </p>
+                    <div class="w-10 h-[2px] bg-gold mt-7"></div>
 
-                        <h3 class="font-heading text-2xl mt-2 font-semibold">
-                            Elegant Silk Saree
-                        </h3>
+                </div>
 
-                        <div class="flex items-center justify-between mt-4">
 
-                            <p class="text-brand font-semibold text-xl">
-                                ₹2,499
-                            </p>
+                <!-- CUSTOM SKETCHING -->
 
-                            <span class="text-gold text-sm">★★★★★</span>
+                <div class="service-card reveal bg-white rounded-xl p-8">
 
-                        </div>
-
-                        <div class="flex gap-3 mt-6">
-
-                            <a href="contact.html"
-                                class="product-action flex-1 text-center bg-brand text-white text-xs font-semibold py-3.5 rounded-full hover:bg-brandDark">
-
-                                Buy Now
-
-                            </a>
-
-                            <a href="products.html"
-                                class="product-action flex-1 text-center border border-brand text-brand text-xs font-semibold py-3.5 rounded-full hover:bg-brand hover:text-white">
-
-                                View Details
-
-                            </a>
-
-                        </div>
-
+                    <div class="service-icon w-16 h-16 rounded-full bg-soft text-brand flex items-center justify-center text-3xl">
+                        ✎
                     </div>
 
-                </article>
+                    <h3 class="font-heading text-2xl font-semibold mt-7">
+                        Custom Sketching
+                    </h3>
+
+                    <p class="text-gray-500 text-sm leading-7 mt-4">
+                        Our custom sketching services help develop
+                        unique patterns and creative designs
+                        according to individual ideas and requirements.
+                    </p>
+
+                    <div class="w-10 h-[2px] bg-gold mt-7"></div>
+
+                </div>
 
 
-                <!-- PRODUCT 2 -->
+                <!-- BAG PRINTING -->
 
-                <article class="product-card reveal rounded-xl overflow-hidden">
+                <div class="service-card reveal bg-white rounded-xl p-8">
 
-                    <div class="product-image h-[380px]">
-
-                        <img src="images/s3.jpeg"
-                            alt="Designer traditional saree"
-                            loading="lazy">
-
-                        <div class="product-overlay"></div>
-
+                    <div class="service-icon w-16 h-16 rounded-full bg-soft text-brand flex items-center justify-center text-3xl">
+                        ◈
                     </div>
 
+                    <h3 class="font-heading text-2xl font-semibold mt-7">
+                        Bag Printing
+                    </h3>
 
-                    <div class="p-6">
+                    <p class="text-gray-500 text-sm leading-7 mt-4">
+                        We extend our printing expertise to shopper bags
+                        and side bags, creating attractive prints
+                        that complement your brand's identity.
+                    </p>
 
-                        <p class="text-gold text-[10px] uppercase tracking-[2px] font-semibold">
-                            Traditional Collection
-                        </p>
+                    <div class="w-10 h-[2px] bg-gold mt-7"></div>
 
-                        <h3 class="font-heading text-2xl mt-2 font-semibold">
-                            Designer Saree
-                        </h3>
+                </div>
 
-                        <div class="flex items-center justify-between mt-4">
-
-                            <p class="text-brand font-semibold text-xl">
-                                ₹2,499
-                            </p>
-
-                            <span class="text-gold text-sm">★★★★★</span>
-
-                        </div>
-
-                        <div class="flex gap-3 mt-6">
-
-                            <a href="contact.html"
-                                class="product-action flex-1 text-center bg-brand text-white text-xs font-semibold py-3.5 rounded-full hover:bg-brandDark">
-
-                                Buy Now
-
-                            </a>
-
-                            <a href="products.html"
-                                class="product-action flex-1 text-center border border-brand text-brand text-xs font-semibold py-3.5 rounded-full hover:bg-brand hover:text-white">
-
-                                View Details
-
-                            </a>
-
-                        </div>
-
-                    </div>
-
-                </article>
-
-
-                <!-- PRODUCT 3 -->
-
-                <article class="product-card reveal rounded-xl overflow-hidden">
-
-                    <div class="product-image h-[380px]">
-
-                        <img src="images/s4.jpeg"
-                            alt="Royal silk saree"
-                            loading="lazy">
-
-                        <div class="product-overlay"></div>
-
-                    </div>
-
-
-                    <div class="p-6">
-
-                        <p class="text-gold text-[10px] uppercase tracking-[2px] font-semibold">
-                            Exclusive Collection
-                        </p>
-
-                        <h3 class="font-heading text-2xl mt-2 font-semibold">
-                            Royal Silk Saree
-                        </h3>
-
-                        <div class="flex items-center justify-between mt-4">
-
-                            <p class="text-brand font-semibold text-xl">
-                                ₹2,499
-                            </p>
-
-                            <span class="text-gold text-sm">★★★★★</span>
-
-                        </div>
-
-                        <div class="flex gap-3 mt-6">
-
-                            <a href="contact.html"
-                                class="product-action flex-1 text-center bg-brand text-white text-xs font-semibold py-3.5 rounded-full hover:bg-brandDark">
-
-                                Buy Now
-
-                            </a>
-
-                            <a href="products.html"
-                                class="product-action flex-1 text-center border border-brand text-brand text-xs font-semibold py-3.5 rounded-full hover:bg-brand hover:text-white">
-
-                                View Details
-
-                            </a>
-
-                        </div>
-
-                    </div>
-
-                </article>
-
-            </div>
-
-
-            <!-- VIEW ALL -->
-
-            <div class="text-center mt-14 reveal">
-
-                <a href="products.html"
-                    class="inline-flex items-center gap-3 border border-brand text-brand px-9 py-4 rounded-full text-sm font-semibold hover:bg-brand hover:text-white transition duration-300">
-
-                    View All Products
-
-                    <span>→</span>
-
-                </a>
 
             </div>
 
@@ -976,60 +788,80 @@
     </section>
 
 
-    <!-- COLLECTION BANNER -->
-
-    <section class="collection-banner py-28 px-5 text-center text-white">
-
-        <div class="max-w-3xl mx-auto reveal">
-
-            <span class="text-gold text-xs uppercase tracking-[4px] font-semibold">
-                Beyond Fashion, A Tradition
-            </span>
-
-            <h2 class="font-heading text-4xl sm:text-6xl font-semibold mt-6 leading-tight">
-                Grace in Every Drape.
-                <span class="block italic text-gold">Beauty in Every Detail.</span>
-            </h2>
-
-            <p class="text-white/75 text-sm leading-7 mt-6 max-w-xl mx-auto">
-                Find the saree that reflects your personality.
-                Celebrate your style with the timeless charm of Indian tradition.
-            </p>
-
-            <a href="products.html"
-                class="inline-block mt-9 bg-gold text-white px-9 py-4 rounded-full text-sm font-semibold hover:bg-white hover:text-brand transition duration-300">
-
-                Discover Our Collection →
-
-            </a>
-
-        </div>
-
-    </section>
-
-
-    <!-- ABOUT SECTION -->
+    <!-- FOUNDER SECTION -->
 
     <section class="py-24 bg-white">
 
-        <div class="max-w-7xl mx-auto px-5 lg:px-8 grid md:grid-cols-2 gap-14 items-center">
+        <div class="max-w-7xl mx-auto px-5 lg:px-8">
+
+            <div class="grid md:grid-cols-2 gap-14 items-center">
+
+                <div class="reveal-left">
+
+                    <span class="text-gold uppercase tracking-[4px] text-xs font-semibold">
+                        The Inspiration Behind Our Journey
+                    </span>
+
+                    <h2 class="font-heading text-4xl sm:text-5xl mt-5 leading-tight">
+                        A Legacy Built on
+                        <span class="text-brand italic">Passion.</span>
+                    </h2>
+
+                    <div class="w-16 h-[2px] bg-gold mt-7"></div>
+
+                    <p class="text-gray-600 text-sm leading-8 mt-7">
+
+                        Every successful journey begins with a vision.
+                        For PRINT INDIA, that vision came from our founder,
+                        <strong class="text-brand">Salam Bhai</strong>.
+
+                    </p>
+
+                    <p class="text-gray-600 text-sm leading-8 mt-5">
+
+                        His dedication to textile printing, commitment
+                        to quality and passion for creative work have
+                        shaped the foundation of our business.
+
+                        His vision continues to inspire our approach
+                        to craftsmanship and customer relationships.
+
+                    </p>
+
+                    <div class="mt-8">
+
+                        <h3 class="font-heading text-2xl text-brand">
+                            Salam Bhai
+                        </h3>
+
+                        <p class="text-gray-500 text-xs uppercase tracking-[2px] mt-2">
+                            Founder, Print India
+                        </p>
+
+                    </div>
+
+                </div>
 
 
-            <div class="reveal-left">
+                <div class="reveal-right">
 
-                <div class="relative">
+                    <div class="bg-soft rounded-xl p-8 sm:p-12">
 
-                    <img src="images/s4.jpeg"
-                        alt="Beautiful Indian saree collection"
-                        loading="lazy"
-                        class="w-full h-[450px] object-cover rounded-xl">
+                        <div class="text-6xl font-heading text-gold">
+                            “
+                        </div>
 
-                    <div class="absolute -bottom-5 -right-4 bg-brand text-white p-6 hidden sm:block">
+                        <p class="font-heading text-2xl sm:text-3xl leading-relaxed text-gray-800 italic">
 
-                        <p class="font-heading text-3xl">Print India</p>
+                            Quality is not just what we deliver.
+                            It is the promise behind everything we create.
 
-                        <p class="text-[10px] tracking-[3px] uppercase text-gold mt-2">
-                            Elegance Forever
+                        </p>
+
+                        <div class="w-14 h-[2px] bg-brand mt-8"></div>
+
+                        <p class="text-brand font-semibold text-sm mt-5">
+                            Our Philosophy
                         </p>
 
                     </div>
@@ -1038,39 +870,92 @@
 
             </div>
 
+        </div>
 
-            <div class="reveal-right">
+    </section>
+
+
+    <!-- MISSION & VISION -->
+
+    <section class="py-24 bg-soft">
+
+        <div class="max-w-7xl mx-auto px-5 lg:px-8">
+
+            <div class="text-center mb-14 reveal">
 
                 <span class="text-gold uppercase tracking-[4px] text-xs font-semibold">
-                    Our Philosophy
+                    What Drives Us
                 </span>
 
-                <h2 class="font-heading text-4xl sm:text-5xl mt-5 leading-tight">
-                    Tradition That Never Goes Out of Style.
+                <h2 class="font-heading text-4xl sm:text-5xl mt-4">
+                    Our Mission & Vision
                 </h2>
 
-                <div class="w-16 h-[2px] bg-gold mt-7"></div>
+            </div>
 
-                <p class="text-gray-500 text-sm leading-8 mt-7">
-                    At Print India, we believe that a saree is more than
-                    just an outfit. It is a beautiful expression of
-                    culture, confidence and individuality.
-                </p>
 
-                <p class="text-gray-500 text-sm leading-8 mt-4">
-                    Our collection brings together timeless traditional
-                    charm and beautiful designs, helping you find
-                    something special for every occasion.
-                </p>
+            <div class="grid md:grid-cols-2 gap-8">
 
-                <a href="about.html"
-                    class="inline-flex items-center gap-3 text-brand font-semibold text-sm mt-8 group">
 
-                    Learn More About Us
+                <!-- MISSION -->
 
-                    <span class="transition-transform group-hover:translate-x-2">→</span>
+                <div class="reveal bg-white p-9 sm:p-12 rounded-xl">
 
-                </a>
+                    <div class="text-brand text-4xl mb-6">
+                        ◈
+                    </div>
+
+                    <h3 class="font-heading text-3xl font-semibold">
+                        Our Mission
+                    </h3>
+
+                    <div class="w-14 h-[2px] bg-gold mt-5"></div>
+
+                    <p class="text-gray-600 text-sm leading-8 mt-7">
+
+                        To deliver exceptional and reliable printing
+                        services for sarees, bags and custom textiles
+                        through a deep commitment to craftsmanship,
+                        client collaboration and artistic excellence.
+
+                        We strive to honour the legacy of our founder,
+                        Salam Bhai, by ensuring every design is executed
+                        with precision, passion and a personal touch.
+
+                    </p>
+
+                </div>
+
+
+                <!-- VISION -->
+
+                <div class="reveal bg-white p-9 sm:p-12 rounded-xl">
+
+                    <div class="text-brand text-4xl mb-6">
+                        ✧
+                    </div>
+
+                    <h3 class="font-heading text-3xl font-semibold">
+                        Our Vision
+                    </h3>
+
+                    <div class="w-14 h-[2px] bg-gold mt-5"></div>
+
+                    <p class="text-gray-600 text-sm leading-8 mt-7">
+
+                        To be the most trusted partner for textile
+                        artistry, blending three decades of heritage
+                        with innovative printing solutions.
+
+                        We aim to bring creative ideas to life on
+                        every fabric we touch while continuing to
+                        build lasting relationships through quality
+                        and dedication.
+
+                    </p>
+
+                </div>
+
 
             </div>
 
@@ -1079,29 +964,29 @@
     </section>
 
 
-    <!-- CTA -->
+    <!-- CTA SECTION -->
 
-    <section class="bg-soft py-20 px-5">
+    <section class="bg-brand py-24 px-5">
 
-        <div class="max-w-4xl mx-auto text-center reveal">
+        <div class="max-w-4xl mx-auto text-center text-white reveal">
 
             <span class="text-gold uppercase tracking-[4px] text-xs font-semibold">
-                Let Us Help You Find Your Style
+                Let's Create Something Beautiful
             </span>
 
-            <h2 class="font-heading text-4xl sm:text-5xl mt-5 text-gray-900">
-                Looking for Something Special?
+            <h2 class="font-heading text-4xl sm:text-6xl mt-6 leading-tight">
+                Have a Creative Idea?
             </h2>
 
-            <p class="text-gray-500 text-sm mt-5 leading-7 max-w-xl mx-auto">
-                Get in touch with us and explore a collection
-                that brings elegance to every occasion.
+            <p class="text-white/75 text-sm leading-8 mt-6 max-w-xl mx-auto">
+                Whether you need saree printing, custom sketching
+                or bag printing, we would love to hear about your project.
             </p>
 
             <a href="contact.html"
-                class="inline-block bg-brand text-white px-9 py-4 rounded-full mt-8 text-sm font-semibold hover:bg-brandDark transition duration-300">
+                class="primary-btn inline-block bg-white text-brand px-9 py-4 rounded-full mt-9 text-sm font-semibold">
 
-                Get in Touch →
+                Let's Talk About Your Project →
 
             </a>
 
@@ -1116,7 +1001,6 @@
 
         <div class="max-w-7xl mx-auto px-5 lg:px-8">
 
-
             <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-12 pb-14">
 
 
@@ -1129,9 +1013,11 @@
                     </h2>
 
                     <p class="text-gray-400 text-sm leading-8 mt-5 max-w-sm">
-                        Bringing you beautiful sarees that celebrate
-                        the richness of Indian tradition and the
-                        elegance of every woman.
+
+                        Bringing creativity to life through quality
+                        textile printing, beautiful designs and
+                        three decades of experience.
+
                     </p>
 
                 </div>
@@ -1209,7 +1095,7 @@
                 </p>
 
                 <p class="text-gray-500 text-xs">
-                    Made with care and elegance.
+                    Crafted with care and dedication.
                 </p>
 
             </div>
@@ -1234,9 +1120,7 @@
 
     <script>
 
-        // =========================
         // PAGE LOADER
-        // =========================
 
         window.addEventListener('load', function () {
 
@@ -1249,9 +1133,7 @@
         });
 
 
-        // =========================
-        // MOBILE NAVIGATION
-        // =========================
+        // MOBILE MENU
 
         const menuToggle = document.getElementById('menu-toggle');
         const mobileMenu = document.getElementById('mobile-menu');
@@ -1269,7 +1151,7 @@
         });
 
 
-        // Close menu after clicking a link
+        // CLOSE MOBILE MENU
 
         mobileMenu.querySelectorAll('a').forEach(function (link) {
 
@@ -1286,13 +1168,10 @@
         });
 
 
-        // =========================
         // NAVBAR SCROLL EFFECT
-        // =========================
 
         const navbar = document.getElementById('navbar');
 
-        // Account for the top announcement bar.
         function updateNavbar() {
 
             if (window.scrollY > 50) {
@@ -1308,9 +1187,7 @@
         updateNavbar();
 
 
-        // =========================
-        // SCROLL REVEAL ANIMATION
-        // =========================
+        // SCROLL REVEAL
 
         const revealElements = document.querySelectorAll(
             '.reveal, .reveal-left, .reveal-right'
@@ -1334,7 +1211,7 @@
 
             }, {
                 threshold: 0.12,
-                rootMargin: '0px 0px -40px 0px'
+                rootMargin: '0px 0px -35px 0px'
             });
 
             revealElements.forEach(function (element) {
@@ -1350,9 +1227,7 @@
         }
 
 
-        // =========================
         // BACK TO TOP
-        // =========================
 
         const backTop = document.getElementById('back-top');
 

@@ -1,202 +1,1788 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Print India</title>
-    <link rel="stylesheet" href="style.css">
+
+    <title>Our Products | PRINT INDIA - Saree & Textile Printing</title>
+
+    <meta name="description" content="Explore PRINT INDIA's textile printing collection, saree printing, custom sketching and bag printing services. Quality craftsmanship with 30 years of experience.">
+
+    <meta name="keywords" content="PRINT INDIA Products, Saree Printing, Silk Sarees, Custom Textile Printing, Shopper Bag Printing, Side Bag Printing">
+
+    <meta name="theme-color" content="#761b32">
+
+    <link rel="icon" href="images/logo.png">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <style>
+        :root {
+            --maroon: #761b32;
+            --dark-maroon: #521020;
+            --gold: #c49a59;
+            --cream: #faf7f2;
+            --soft: #f2ebe2;
+            --text: #342b28;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--cream);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Loader */
+
+        #loader {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: var(--dark-maroon);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity .5s ease, visibility .5s ease;
+        }
+
+        #loader.hide {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader-content {
+            text-align: center;
+            color: white;
+        }
+
+        .loader-content img {
+            width: 85px;
+            height: 85px;
+            object-fit: contain;
+            margin: auto auto 15px;
+        }
+
+        .loader-line {
+            width: 130px;
+            height: 3px;
+            background: rgba(255,255,255,.2);
+            margin: 15px auto 0;
+            overflow: hidden;
+        }
+
+        .loader-line::after {
+            content: "";
+            display: block;
+            height: 100%;
+            width: 50%;
+            background: var(--gold);
+            animation: loading 1s infinite ease-in-out;
+        }
+
+        @keyframes loading {
+            from { transform: translateX(-100%); }
+            to { transform: translateX(200%); }
+        }
+
+        /* Announcement Bar */
+
+        .top-bar {
+            background: var(--dark-maroon);
+            color: #f8e9d5;
+            text-align: center;
+            padding: 9px 15px;
+            font-size: 11px;
+            letter-spacing: 1.2px;
+        }
+
+        /* Navbar */
+
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(250,247,242,.96);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(118,27,50,.1);
+            transition: box-shadow .3s ease;
+        }
+
+        .navbar.scrolled {
+            box-shadow: 0 8px 25px rgba(0,0,0,.07);
+        }
+
+        .nav-inner {
+            max-width: 1250px;
+            margin: auto;
+            padding: 12px 25px;
+            min-height: 78px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo img {
+            width: 150px;
+            height: 55px;
+            object-fit: contain;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 36px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #4c3538;
+            font-size: 14px;
+            font-weight: 600;
+            position: relative;
+            transition: .3s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--maroon);
+        }
+
+        .nav-links a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -7px;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: width .3s ease;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 25px;
+            color: var(--maroon);
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+
+        /* Hero */
+
+        .products-hero {
+            min-height: 350px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 70px 20px;
+            background:
+                linear-gradient(rgba(48,12,24,.78), rgba(48,12,24,.84)),
+                url('images/about.png') center/cover no-repeat;
+            color: white;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 750px;
+        }
+
+        .hero-label {
+            color: #e2c18e;
+            font-size: 11px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-bottom: 17px;
+        }
+
+        .products-hero h1 {
+            font-size: clamp(42px, 6vw, 65px);
+            line-height: 1.15;
+            margin-bottom: 17px;
+        }
+
+        .products-hero h1 span {
+            color: #d9b477;
+            font-style: italic;
+        }
+
+        .products-hero p {
+            color: #f2e7e2;
+            font-size: 15px;
+            line-height: 1.8;
+            max-width: 580px;
+            margin: auto;
+        }
+
+        .hero-line {
+            width: 65px;
+            height: 2px;
+            background: var(--gold);
+            margin: 24px auto 0;
+        }
+
+        /* Common */
+
+        .section-container {
+            max-width: 1250px;
+            margin: auto;
+            padding-left: 25px;
+            padding-right: 25px;
+        }
+
+        .section-label {
+            color: var(--gold);
+            text-transform: uppercase;
+            font-size: 11px;
+            letter-spacing: 3px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .section-heading {
+            font-size: clamp(30px, 4vw, 43px);
+            line-height: 1.2;
+            color: var(--dark-maroon);
+        }
+
+        .section-heading span {
+            color: var(--gold);
+            font-style: italic;
+        }
+
+        /* Products Section */
+
+        .products-section {
+            padding: 90px 0 100px;
+        }
+
+        .products-heading {
+            text-align: center;
+            max-width: 680px;
+            margin: 0 auto 45px;
+        }
+
+        .products-heading p {
+            color: #81736e;
+            font-size: 14px;
+            line-height: 1.9;
+            margin-top: 16px;
+        }
+
+        /* Search */
+
+        .product-toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 35px;
+        }
+
+        .search-box {
+            display: flex;
+            align-items: center;
+            background: white;
+            border: 1px solid #e9dfd6;
+            padding: 0 16px;
+            width: 270px;
+            height: 46px;
+            border-radius: 3px;
+        }
+
+        .search-box i {
+            color: var(--gold);
+            font-size: 14px;
+        }
+
+        .search-box input {
+            width: 100%;
+            height: 100%;
+            padding-left: 11px;
+            border: none;
+            outline: none;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 13px;
+            color: var(--text);
+            background: transparent;
+        }
+
+        /* Category Filters */
+
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .filter-btn {
+            padding: 12px 20px;
+            border: 1px solid #e5d8ce;
+            background: white;
+            color: #6f5b58;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 3px;
+            transition: .3s;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--maroon);
+            border-color: var(--maroon);
+            color: white;
+        }
+
+        /* Product Grid */
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 25px;
+        }
+
+        .product-card {
+            background: white;
+            border: 1px solid #eee5dc;
+            border-radius: 4px;
+            overflow: hidden;
+            transition: transform .35s ease, box-shadow .35s ease;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 18px 35px rgba(70,30,30,.1);
+        }
+
+        .product-image {
+            height: 310px;
+            overflow: hidden;
+            position: relative;
+            background: var(--soft);
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform .7s ease;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.07);
+        }
+
+        .product-tag {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: var(--maroon);
+            color: white;
+            padding: 7px 12px;
+            font-size: 10px;
+            letter-spacing: .5px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .product-content {
+            padding: 20px 19px 15px;
+        }
+
+        .product-category {
+            color: var(--gold);
+            font-size: 10px;
+            letter-spacing: 1.5px;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 9px;
+        }
+
+        .product-content h3 {
+            font-size: 21px;
+            color: var(--dark-maroon);
+            margin-bottom: 9px;
+        }
+
+        .product-description {
+            color: #887a74;
+            font-size: 12px;
+            line-height: 1.7;
+            min-height: 42px;
+        }
+
+        .product-price {
+            color: var(--maroon);
+            font-size: 17px;
+            font-weight: 700;
+            margin-top: 14px;
+        }
+
+        .product-actions {
+            display: flex;
+            gap: 9px;
+            padding: 0 19px 20px;
+        }
+
+        .product-actions button {
+            flex: 1;
+            border: 1px solid var(--maroon);
+            background: var(--maroon);
+            color: white;
+            padding: 11px 8px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: .3s;
+            border-radius: 2px;
+        }
+
+        .product-actions button:hover {
+            background: var(--dark-maroon);
+            border-color: var(--dark-maroon);
+        }
+
+        .product-actions .details-btn {
+            background: transparent;
+            color: var(--maroon);
+        }
+
+        .product-actions .details-btn:hover {
+            background: var(--soft);
+            border-color: var(--gold);
+        }
+
+        .no-products {
+            display: none;
+            text-align: center;
+            padding: 50px 20px;
+            color: #82736e;
+            background: white;
+            border: 1px solid #eee5dc;
+            margin-top: 20px;
+        }
+
+        .no-products i {
+            font-size: 35px;
+            color: var(--gold);
+            margin-bottom: 15px;
+        }
+
+        .no-products h3 {
+            color: var(--dark-maroon);
+            font-size: 23px;
+            margin-bottom: 8px;
+        }
+
+        /* Product Details Modal */
+
+        .modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(20,10,13,.75);
+            z-index: 5000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            opacity: 0;
+            visibility: hidden;
+            transition: .3s;
+        }
+
+        .modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-box {
+            background: var(--cream);
+            max-width: 780px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            position: relative;
+            transform: translateY(20px);
+            transition: .3s;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal.active .modal-box {
+            transform: translateY(0);
+        }
+
+        .modal-image {
+            min-height: 380px;
+        }
+
+        .modal-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .modal-content {
+            padding: 40px 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .modal-content h2 {
+            color: var(--dark-maroon);
+            font-size: 30px;
+            margin-bottom: 13px;
+        }
+
+        .modal-content p {
+            color: #80716b;
+            font-size: 13px;
+            line-height: 1.9;
+        }
+
+        .modal-price {
+            color: var(--maroon);
+            font-size: 22px;
+            font-weight: 700;
+            margin: 20px 0;
+        }
+
+        .modal-buy {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            background: var(--maroon);
+            color: white;
+            padding: 14px 20px;
+            border: none;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: .3s;
+        }
+
+        .modal-buy:hover {
+            background: var(--dark-maroon);
+        }
+
+        .modal-close {
+            position: absolute;
+            right: 13px;
+            top: 13px;
+            width: 35px;
+            height: 35px;
+            border: none;
+            background: var(--dark-maroon);
+            color: white;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 2;
+        }
+
+        /* CTA */
+
+        .product-cta {
+            background: var(--dark-maroon);
+            padding: 75px 20px;
+            text-align: center;
+            color: white;
+        }
+
+        .product-cta .section-label {
+            color: #e2bd83;
+        }
+
+        .product-cta h2 {
+            font-size: clamp(28px, 4vw, 40px);
+            margin-bottom: 15px;
+        }
+
+        .product-cta p {
+            color: #dfcfca;
+            font-size: 14px;
+            line-height: 1.8;
+            max-width: 600px;
+            margin: 0 auto 25px;
+        }
+
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--gold);
+            color: var(--dark-maroon);
+            padding: 14px 25px;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 700;
+            border-radius: 3px;
+            transition: .3s;
+        }
+
+        .cta-btn:hover {
+            background: white;
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+
+        .footer {
+            background: #26171b;
+            color: white;
+            padding: 65px 0 0;
+        }
+
+        .footer-container {
+            max-width: 1180px;
+            margin: auto;
+            padding: 0 25px 45px;
+            display: grid;
+            grid-template-columns: 1.4fr 1fr 1fr;
+            gap: 55px;
+        }
+
+        .footer-logo {
+            width: 145px;
+            height: 60px;
+            object-fit: contain;
+            margin-bottom: 17px;
+            background: white;
+            padding: 5px;
+            border-radius: 3px;
+        }
+
+        .footer-column p {
+            color: #c5b4b0;
+            font-size: 13px;
+            line-height: 1.9;
+            max-width: 320px;
+        }
+
+        .footer-column h4 {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #dfba81;
+            margin-bottom: 22px;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 13px;
+        }
+
+        .footer-column ul a {
+            text-decoration: none;
+            color: #c5b4b0;
+            font-size: 13px;
+            transition: .3s;
+        }
+
+        .footer-column ul a:hover {
+            color: #dfba81;
+            padding-left: 5px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 10px;
+        }
+
+        .footer-social a {
+            width: 36px;
+            height: 36px;
+            border: 1px solid #665057;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: .3s;
+        }
+
+        .footer-social a:hover {
+            background: var(--gold);
+            border-color: var(--gold);
+            color: #26171b;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,.1);
+            text-align: center;
+            padding: 20px 15px;
+            color: #a99591;
+            font-size: 11px;
+            letter-spacing: .5px;
+        }
+
+        /* Reveal Animation */
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(25px);
+            transition: opacity .7s ease, transform .7s ease;
+        }
+
+        .reveal.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Back To Top */
+
+        .back-top {
+            position: fixed;
+            right: 22px;
+            bottom: 22px;
+            width: 43px;
+            height: 43px;
+            background: var(--maroon);
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            z-index: 900;
+            opacity: 0;
+            visibility: hidden;
+            transition: .3s;
+        }
+
+        .back-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-top:hover {
+            background: var(--gold);
+            color: var(--dark-maroon);
+        }
+
+        /* Responsive */
+
+        @media (max-width: 1050px) {
+            .product-grid {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+
+            .product-image {
+                height: 280px;
+            }
+        }
+
+        @media (max-width: 800px) {
+            .nav-links {
+                gap: 22px;
+            }
+
+            .product-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .product-image {
+                height: 310px;
+            }
+        }
+
+        @media (max-width: 650px) {
+            .top-bar {
+                font-size: 9px;
+                letter-spacing: .7px;
+            }
+
+            .nav-inner {
+                min-height: 70px;
+                padding: 8px 20px;
+            }
+
+            .logo img {
+                width: 125px;
+                height: 48px;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--cream);
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0;
+                padding: 10px 20px 20px;
+                box-shadow: 0 12px 20px rgba(0,0,0,.08);
+                display: none;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links li {
+                border-bottom: 1px solid #eee4dc;
+            }
+
+            .nav-links a {
+                display: block;
+                padding: 14px 5px;
+            }
+
+            .nav-links a::after {
+                display: none;
+            }
+
+            .products-hero {
+                min-height: 285px;
+                padding: 55px 20px;
+            }
+
+            .products-hero p {
+                font-size: 13px;
+            }
+
+            .products-section {
+                padding: 65px 0;
+            }
+
+            .product-toolbar {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .search-box {
+                width: 100%;
+            }
+
+            .filter-buttons {
+                gap: 8px;
+            }
+
+            .filter-btn {
+                padding: 10px 13px;
+                font-size: 11px;
+            }
+
+            .product-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 13px;
+            }
+
+            .product-image {
+                height: 220px;
+            }
+
+            .product-content {
+                padding: 14px 12px 10px;
+            }
+
+            .product-content h3 {
+                font-size: 17px;
+            }
+
+            .product-description {
+                font-size: 11px;
+                min-height: 54px;
+            }
+
+            .product-price {
+                font-size: 15px;
+            }
+
+            .product-actions {
+                padding: 0 10px 13px;
+                gap: 6px;
+            }
+
+            .product-actions button {
+                padding: 10px 5px;
+                font-size: 10px;
+            }
+
+            .product-tag {
+                top: 9px;
+                left: 9px;
+                font-size: 8px;
+                padding: 6px 8px;
+            }
+
+            .modal-box {
+                grid-template-columns: 1fr;
+                max-width: 430px;
+            }
+
+            .modal-image {
+                height: 240px;
+                min-height: 0;
+            }
+
+            .modal-content {
+                padding: 25px 22px;
+            }
+
+            .modal-content h2 {
+                font-size: 25px;
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+                gap: 35px;
+                padding-bottom: 35px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .product-image {
+                height: 180px;
+            }
+
+            .product-actions {
+                flex-direction: column;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                animation-duration: .01ms !important;
+                transition-duration: .01ms !important;
+            }
+
+            .reveal {
+                opacity: 1;
+                transform: none;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-    <!-- Navbar -->
+    <!-- Page Loader -->
+    <div id="loader">
+        <div class="loader-content">
+            <img src="images/logo.png" alt="PRINT INDIA Logo">
+            <p style="letter-spacing:3px;font-size:12px;">PRINT INDIA</p>
+            <div class="loader-line"></div>
+        </div>
+    </div>
 
-    <header>
-        <nav>
-            <div class="logo">
-                <img src="images/logo.png" alt="">
-            </div>
-            <div class="menu-toggle" id="menu-toggle">
-                ☰
-            </div>
-            <ul id="nav-links">
+    <!-- Announcement Bar -->
+    <div class="top-bar">
+        CRAFTING TEXTILE BEAUTY WITH 30 YEARS OF EXPERIENCE
+    </div>
+
+    <!-- Navbar -->
+    <header class="navbar" id="navbar">
+
+        <nav class="nav-inner">
+
+            <a href="index.html" class="logo">
+                <img src="images/logo.png" alt="PRINT INDIA">
+            </a>
+
+            <button class="menu-toggle" id="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+            <ul class="nav-links" id="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="products.html" class="active">Products</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
+
         </nav>
+
     </header>
 
     <!-- Hero Section -->
+    <section class="products-hero">
 
-    <section class="hero">
-        <div class="heading">
-            <h1>Welcome to Print India</h1>
-            <h2>Best Quality Sarees are available here at Good Prices.</h2>
-            <a href="products.html">View All Products</a>
-        </div>
-    </section>
+        <div class="hero-content reveal">
 
-    <!-- Product Section -->
+            <div class="hero-label">Explore Our Collection</div>
 
-    <section class="product">
-        <h1>Our Products</h1>
-        <div class="product-container">
+            <h1>Our <span>Products</span></h1>
 
-            <div class="product-card">
-                <div class="product-img">
-                    <img src="images/s1.jpeg" alt="Product 1">
-                </div>
-                <div class="product-content">
-                    <h3>Silk Saree</h3>
-                    <p>₹2,499</p>
-                </div>
-                <div class="product-btn">
-                    <a href="#">Buy Now</a>
-                    <a href="#">View Details</a>
-                </div>
-            </div>
+            <p>
+                Discover our world of textile creativity, from beautiful saree
+                printing to custom sketching and thoughtfully designed bags.
+            </p>
 
-            <div class="product-card">
-                <div class="product-img">
-                    <img src="images/s3.jpeg" alt="Product 1">
-                </div>
-                <div class="product-content">
-                    <h3>Silk Saree</h3>
-                    <p>₹2,499</p>
-                </div>
-                <div class="product-btn">
-                    <a href="#">Buy Now</a>
-                    <a href="#">View Details</a>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <div class="product-img">
-                    <img src="images/s4.jpeg" alt="Product 1">
-                </div>
-                <div class="product-content">
-                    <h3>Silk Saree</h3>
-                    <p>₹2,499</p>
-                </div>
-                <div class="product-btn">
-                    <a href="#">Buy Now</a>
-                    <a href="#">View Details</a>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <div class="product-img">
-                    <img src="images/s5.jpeg" alt="Product 1">
-                </div>
-                <div class="product-content">
-                    <h3>Silk Saree</h3>
-                    <p>₹2,499</p>
-                </div>
-                <div class="product-btn">
-                    <a href="#">Buy Now</a>
-                    <a href="#">View Details</a>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <div class="product-img">
-                    <img src="images/s6.jpeg" alt="Product 1">
-                </div>
-                <div class="product-content">
-                    <h3>Silk Saree</h3>
-                    <p>₹2,499</p>
-                </div>
-                <div class="product-btn">
-                    <a href="#">Buy Now</a>
-                    <a href="#">View Details</a>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <div class="product-img">
-                    <img src="images/s7.jpeg" alt="Product 1">
-                </div>
-                <div class="product-content">
-                    <h3>Silk Saree</h3>
-                    <p>₹2,499</p>
-                </div>
-                <div class="product-btn">
-                    <a href="#">Buy Now</a>
-                    <a href="#">View Details</a>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <div class="product-img">
-                    <img src="images/s8.jpeg" alt="Product 1">
-                </div>
-                <div class="product-content">
-                    <h3>Silk Saree</h3>
-                    <p>₹2,499</p>
-                </div>
-                <div class="product-btn">
-                    <a href="#">Buy Now</a>
-                    <a href="#">View Details</a>
-                </div>
-            </div>
-            
-            <div class="product-card">
-                <div class="product-img">
-                    <img src="images/s9.jpeg" alt="Product 1">
-                </div>
-                <div class="product-content">
-                    <h3>Silk Saree</h3>
-                    <p>₹2,499</p>
-                </div>
-                <div class="product-btn">
-                    <a href="#">Buy Now</a>
-                    <a href="#">View Details</a>
-                </div>
-            </div>
+            <div class="hero-line"></div>
 
         </div>
+
     </section>
+
+    <!-- Products Section -->
+    <section class="products-section">
+
+        <div class="section-container">
+
+            <div class="products-heading reveal">
+
+                <div class="section-label">PRINT INDIA COLLECTION</div>
+
+                <h2 class="section-heading">
+                    Crafted With <span>Creativity</span>
+                </h2>
+
+                <p>
+                    Explore our printing work and textile collections.
+                    Every design reflects our passion for craftsmanship,
+                    creativity and quality.
+                </p>
+
+            </div>
+
+            <!-- Search & Filters -->
+            <div class="product-toolbar reveal">
+
+                <div class="filter-buttons">
+
+                    <button class="filter-btn active" data-filter="all">All Products</button>
+
+                    <button class="filter-btn" data-filter="saree">Sarees</button>
+
+                    <button class="filter-btn" data-filter="custom">Custom Printing</button>
+
+                    <button class="filter-btn" data-filter="bags">Bags</button>
+
+                </div>
+
+                <div class="search-box">
+
+                    <i class="fa-solid fa-magnifying-glass"></i>
+
+                    <input type="search" id="productSearch" placeholder="Search products...">
+
+                </div>
+
+            </div>
+
+            <!-- Product Grid -->
+            <div class="product-grid" id="productGrid">
+
+                <!-- Product 1 -->
+                <div class="product-card reveal" data-category="saree" data-name="Silk Saree">
+
+                    <div class="product-image">
+                        <img src="images/s1.jpeg" alt="Silk Saree" loading="lazy">
+                        <span class="product-tag">Saree</span>
+                    </div>
+
+                    <div class="product-content">
+                        <div class="product-category">Saree Collection</div>
+                        <h3>Silk Saree</h3>
+                        <p class="product-description">
+                            An elegant saree design showcasing beautiful textile detailing.
+                        </p>
+                        <div class="product-price">Enquire for Price</div>
+                    </div>
+
+                    <div class="product-actions">
+                        <button class="buy-btn" data-product="Silk Saree">
+                            <i class="fa-brands fa-whatsapp"></i> Enquire
+                        </button>
+
+                        <button class="details-btn"
+                            data-name="Silk Saree"
+                            data-image="images/s1.jpeg"
+                            data-category="Saree Collection"
+                            data-description="An elegant saree design showcasing beautiful textile detailing. Contact PRINT INDIA for availability, printing options and pricing.">
+                            View Details
+                        </button>
+                    </div>
+
+                </div>
+
+                <!-- Product 2 -->
+                <div class="product-card reveal" data-category="saree" data-name="Printed Saree">
+
+                    <div class="product-image">
+                        <img src="images/s3.jpeg" alt="Printed Saree" loading="lazy">
+                        <span class="product-tag">Saree</span>
+                    </div>
+
+                    <div class="product-content">
+                        <div class="product-category">Saree Collection</div>
+                        <h3>Printed Saree</h3>
+                        <p class="product-description">
+                            A distinctive printed design for a graceful traditional look.
+                        </p>
+                        <div class="product-price">Enquire for Price</div>
+                    </div>
+
+                    <div class="product-actions">
+                        <button class="buy-btn" data-product="Printed Saree">
+                            <i class="fa-brands fa-whatsapp"></i> Enquire
+                        </button>
+
+                        <button class="details-btn"
+                            data-name="Printed Saree"
+                            data-image="images/s3.jpeg"
+                            data-category="Saree Collection"
+                            data-description="A distinctive printed design for a graceful traditional look. Contact PRINT INDIA for availability, printing options and pricing.">
+                            View Details
+                        </button>
+                    </div>
+
+                </div>
+
+                <!-- Product 3 -->
+                <div class="product-card reveal" data-category="saree" data-name="Designer Saree">
+
+                    <div class="product-image">
+                        <img src="images/s4.jpeg" alt="Designer Saree" loading="lazy">
+                        <span class="product-tag">Saree</span>
+                    </div>
+
+                    <div class="product-content">
+                        <div class="product-category">Saree Collection</div>
+                        <h3>Designer Saree</h3>
+                        <p class="product-description">
+                            Creative patterns and refined printing for a stylish appearance.
+                        </p>
+                        <div class="product-price">Enquire for Price</div>
+                    </div>
+
+                    <div class="product-actions">
+                        <button class="buy-btn" data-product="Designer Saree">
+                            <i class="fa-brands fa-whatsapp"></i> Enquire
+                        </button>
+
+                        <button class="details-btn"
+                            data-name="Designer Saree"
+                            data-image="images/s4.jpeg"
+                            data-category="Saree Collection"
+                            data-description="Creative patterns and refined printing for a stylish appearance. Contact PRINT INDIA for availability, printing options and pricing.">
+                            View Details
+                        </button>
+                    </div>
+
+                </div>
+
+                <!-- Product 4 -->
+                <div class="product-card reveal" data-category="saree" data-name="Traditional Saree">
+
+                    <div class="product-image">
+                        <img src="images/s5.jpeg" alt="Traditional Saree" loading="lazy">
+                        <span class="product-tag">Saree</span>
+                    </div>
+
+                    <div class="product-content">
+                        <div class="product-category">Saree Collection</div>
+                        <h3>Traditional Saree</h3>
+                        <p class="product-description">
+                            A timeless textile style inspired by traditional aesthetics.
+                        </p>
+                        <div class="product-price">Enquire for Price</div>
+                    </div>
+
+                    <div class="product-actions">
+                        <button class="buy-btn" data-product="Traditional Saree">
+                            <i class="fa-brands fa-whatsapp"></i> Enquire
+                        </button>
+
+                        <button class="details-btn"
+                            data-name="Traditional Saree"
+                            data-image="images/s5.jpeg"
+                            data-category="Saree Collection"
+                            data-description="A timeless textile style inspired by traditional aesthetics. Contact PRINT INDIA for availability, printing options and pricing.">
+                            View Details
+                        </button>
+                    </div>
+
+                </div>
+
+                <!-- Product 5 -->
+                <div class="product-card reveal" data-category="saree" data-name="Elegant Saree">
+
+                    <div class="product-image">
+                        <img src="images/s6.jpeg" alt="Elegant Saree" loading="lazy">
+                        <span class="product-tag">Saree</span>
+                    </div>
+
+                    <div class="product-content">
+                        <div class="product-category">Saree Collection</div>
+                        <h3>Elegant Saree</h3>
+                        <p class="product-description">
+                            A carefully designed textile look for everyday and special occasions.
+                        </p>
+                        <div class="product-price">Enquire for Price</div>
+                    </div>
+
+                    <div class="product-actions">
+                        <button class="buy-btn" data-product="Elegant Saree">
+                            <i class="fa-brands fa-whatsapp"></i> Enquire
+                        </button>
+
+                        <button class="details-btn"
+                            data-name="Elegant Saree"
+                            data-image="images/s6.jpeg"
+                            data-category="Saree Collection"
+                            data-description="A carefully designed textile look for everyday and special occasions. Contact PRINT INDIA for availability, printing options and pricing.">
+                            View Details
+                        </button>
+                    </div>
+
+                </div>
+
+                <!-- Product 6 -->
+                <div class="product-card reveal" data-category="saree" data-name="Printed Collection">
+
+                    <div class="product-image">
+                        <img src="images/s7.jpeg" alt="Printed Collection" loading="lazy">
+                        <span class="product-tag">Saree</span>
+                    </div>
+
+                    <div class="product-content">
+                        <div class="product-category">Saree Collection</div>
+                        <h3>Printed Collection</h3>
+                        <p class="product-description">
+                            Attractive textile prints created with attention to detail.
+                        </p>
+                        <div class="product-price">Enquire for Price</div>
+                    </div>
+
+                    <div class="product-actions">
+                        <button class="buy-btn" data-product="Printed Collection">
+                            <i class="fa-brands fa-whatsapp"></i> Enquire
+                        </button>
+
+                        <button class="details-btn"
+                            data-name="Printed Collection"
+                            data-image="images/s7.jpeg"
+                            data-category="Saree Collection"
+                            data-description="Attractive textile prints created with attention to detail. Contact PRINT INDIA for availability, printing options and pricing.">
+                            View Details
+                        </button>
+                    </div>
+
+                </div>
+
+                <!-- Product 7 -->
+                <div class="product-card reveal" data-category="saree" data-name="Premium Saree">
+
+                    <div class="product-image">
+                        <img src="images/s8.jpeg" alt="Premium Saree" loading="lazy">
+                        <span class="product-tag">Saree</span>
+                    </div>
+
+                    <div class="product-content">
+                        <div class="product-category">Saree Collection</div>
+                        <h3>Premium Saree</h3>
+                        <p class="product-description">
+                            A beautiful saree style with a focus on visual appeal and detail.
+                        </p>
+                        <div class="product-price">Enquire for Price</div>
+                    </div>
+
+                    <div class="product-actions">
+                        <button class="buy-btn" data-product="Premium Saree">
+                            <i class="fa-brands fa-whatsapp"></i> Enquire
+                        </button>
+
+                        <button class="details-btn"
+                            data-name="Premium Saree"
+                            data-image="images/s8.jpeg"
+                            data-category="Saree Collection"
+                            data-description="A beautiful saree style with a focus on visual appeal and detail. Contact PRINT INDIA for availability, printing options and pricing.">
+                            View Details
+                        </button>
+                    </div>
+
+                </div>
+
+                <!-- Product 8 -->
+                <div class="product-card reveal" data-category="saree" data-name="Exclusive Saree">
+
+                    <div class="product-image">
+                        <img src="images/s9.jpeg" alt="Exclusive Saree" loading="lazy">
+                        <span class="product-tag">Saree</span>
+                    </div>
+
+                    <div class="product-content">
+                        <div class="product-category">Saree Collection</div>
+                        <h3>Exclusive Saree</h3>
+                        <p class="product-description">
+                            A unique textile design for those who appreciate creative prints.
+                        </p>
+                        <div class="product-price">Enquire for Price</div>
+                    </div>
+
+                    <div class="product-actions">
+                        <button class="buy-btn" data-product="Exclusive Saree">
+                            <i class="fa-brands fa-whatsapp"></i> Enquire
+                        </button>
+
+                        <button class="details-btn"
+                            data-name="Exclusive Saree"
+                            data-image="images/s9.jpeg"
+                            data-category="Saree Collection"
+                            data-description="A unique textile design for those who appreciate creative prints. Contact PRINT INDIA for availability, printing options and pricing.">
+                            View Details
+                        </button>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- No Results -->
+            <div class="no-products" id="noProducts">
+                <i class="fa-solid fa-box-open"></i>
+                <h3>No Products Found</h3>
+                <p>Try searching with another product name or category.</p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- CTA -->
+    <section class="product-cta">
+
+        <div class="reveal">
+
+            <div class="section-label">Custom Orders Welcome</div>
+
+            <h2>Looking for Something Special?</h2>
+
+            <p>
+                Have a specific design or printing requirement?
+                Connect with our team to discuss your custom textile project.
+            </p>
+
+            <a href="contact.html" class="cta-btn">
+                Discuss Your Project
+                <i class="fa-solid fa-arrow-right"></i>
+            </a>
+
+        </div>
+
+    </section>
+
+    <!-- Product Details Modal -->
+    <div class="modal" id="productModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+
+        <div class="modal-box">
+
+            <button class="modal-close" id="modalClose" aria-label="Close details">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="modal-image">
+                <img src="" alt="" id="modalImage">
+            </div>
+
+            <div class="modal-content">
+
+                <div class="section-label" id="modalCategory">Our Collection</div>
+
+                <h2 id="modalTitle">Product Name</h2>
+
+                <p id="modalDescription"></p>
+
+                <div class="modal-price">Enquire for Price</div>
+
+                <a href="#" class="modal-buy" id="modalBuy">
+                    <i class="fa-brands fa-whatsapp"></i>
+                    Enquire on WhatsApp
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
 
     <!-- Footer -->
-
     <footer class="footer">
+
         <div class="footer-container">
+
             <div class="footer-column">
-                <h3>Print India</h3>
-                <p>Elegant Sarees crafted with love and tradition.</p>
+
+                <img src="images/logo.png" alt="PRINT INDIA Logo" class="footer-logo">
+
+                <p>
+                    PRINT INDIA brings creativity and craftsmanship together
+                    through saree printing, custom sketching and bag printing.
+                    Creating textile beauty with 30 years of experience.
+                </p>
+
             </div>
 
             <div class="footer-column">
+
                 <h4>Quick Links</h4>
+
                 <ul>
                     <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="products.html">Products</a></li>
-                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="products.html">Our Products</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
                 </ul>
+
             </div>
 
             <div class="footer-column">
-                <h4>Follow Us</h4>
-                <div class="social-icons">
-                    <a href="#">🌐</a>
-                    <a href="#">📸</a>
-                    <a href="#">💬</a>
+
+                <h4>Our Services</h4>
+
+                <ul>
+                    <li><a href="products.html">Saree Printing</a></li>
+                    <li><a href="products.html">Custom Sketching</a></li>
+                    <li><a href="products.html">Shopper Bag Printing</a></li>
+                    <li><a href="products.html">Side Bag Printing</a></li>
+                </ul>
+
+                <div class="footer-social">
+
+                    <a href="#" aria-label="Facebook">
+                        <i class="fa-brands fa-facebook-f"></i>
+                    </a>
+
+                    <a href="#" aria-label="Instagram">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+
+                    <a href="https://wa.me/919876543210" target="_blank" rel="noopener" aria-label="WhatsApp">
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </a>
+
                 </div>
+
             </div>
+
         </div>
 
         <div class="footer-bottom">
-            <p>© 2025 Print India Sarees. All Rights Reserved.</p>
+            <p>© <span id="currentYear"></span> PRINT INDIA. All Rights Reserved.</p>
         </div>
+
     </footer>
 
-    <script src="script.js"></script>
+    <!-- Back To Top -->
+    <button class="back-top" id="backTop" aria-label="Back to top">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
+    <!-- JavaScript -->
+    <script>
+
+        // Page Loader
+        window.addEventListener("load", function () {
+            document.getElementById("loader").classList.add("hide");
+        });
+
+        // Mobile Menu
+        const menuToggle = document.getElementById("menu-toggle");
+        const navLinks = document.getElementById("nav-links");
+        const menuIcon = menuToggle.querySelector("i");
+
+        menuToggle.addEventListener("click", function () {
+
+            navLinks.classList.toggle("active");
+
+            const isOpen = navLinks.classList.contains("active");
+
+            menuToggle.setAttribute("aria-expanded", isOpen);
+
+            menuIcon.className = isOpen
+                ? "fa-solid fa-xmark"
+                : "fa-solid fa-bars";
+
+        });
+
+        document.querySelectorAll(".nav-links a").forEach(function (link) {
+
+            link.addEventListener("click", function () {
+
+                navLinks.classList.remove("active");
+
+                menuToggle.setAttribute("aria-expanded", "false");
+
+                menuIcon.className = "fa-solid fa-bars";
+
+            });
+
+        });
+
+        // Navbar Scroll Effect
+        const navbar = document.getElementById("navbar");
+        const backTop = document.getElementById("backTop");
+
+        window.addEventListener("scroll", function () {
+
+            navbar.classList.toggle("scrolled", window.scrollY > 30);
+
+            backTop.classList.toggle("show", window.scrollY > 350);
+
+        });
+
+        // Back To Top
+        backTop.addEventListener("click", function () {
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+
+        });
+
+        // Scroll Reveal
+        const revealElements = document.querySelectorAll(".reveal");
+
+        if ("IntersectionObserver" in window) {
+
+            const observer = new IntersectionObserver(function (entries) {
+
+                entries.forEach(function (entry) {
+
+                    if (entry.isIntersecting) {
+
+                        entry.target.classList.add("show");
+
+                        observer.unobserve(entry.target);
+
+                    }
+
+                });
+
+            }, {
+                threshold: 0.12
+            });
+
+            revealElements.forEach(function (element) {
+                observer.observe(element);
+            });
+
+        } else {
+
+            revealElements.forEach(function (element) {
+                element.classList.add("show");
+            });
+
+        }
+
+        // Product Filtering + Search
+        const filterButtons = document.querySelectorAll(".filter-btn");
+        const productCards = document.querySelectorAll(".product-card");
+        const productSearch = document.getElementById("productSearch");
+        const noProducts = document.getElementById("noProducts");
+
+        let activeCategory = "all";
+
+        function filterProducts() {
+
+            const searchText = productSearch.value.toLowerCase().trim();
+
+            let visibleCount = 0;
+
+            productCards.forEach(function (card) {
+
+                const category = card.dataset.category;
+                const name = card.dataset.name.toLowerCase();
+                const description = card.querySelector(".product-description").textContent.toLowerCase();
+
+                const matchesCategory =
+                    activeCategory === "all" || category === activeCategory;
+
+                const matchesSearch =
+                    name.includes(searchText) || description.includes(searchText);
+
+                if (matchesCategory && matchesSearch) {
+
+                    card.style.display = "block";
+                    visibleCount++;
+
+                } else {
+
+                    card.style.display = "none";
+
+                }
+
+            });
+
+            noProducts.style.display = visibleCount === 0 ? "block" : "none";
+
+        }
+
+        filterButtons.forEach(function (button) {
+
+            button.addEventListener("click", function () {
+
+                filterButtons.forEach(function (btn) {
+                    btn.classList.remove("active");
+                });
+
+                button.classList.add("active");
+
+                activeCategory = button.dataset.filter;
+
+                filterProducts();
+
+            });
+
+        });
+
+        productSearch.addEventListener("input", filterProducts);
+
+        // WhatsApp Product Enquiry
+        const whatsappNumber = "919876543210";
+
+        function openWhatsApp(productName) {
+
+            const message =
+                "Hello PRINT INDIA,%0A%0A" +
+                "I am interested in: " +
+                encodeURIComponent(productName) +
+                ".%0A%0APlease share more details and pricing.";
+
+            const url =
+                "https://wa.me/" + whatsappNumber + "?text=" + message;
+
+            window.open(url, "_blank");
+
+        }
+
+        document.querySelectorAll(".buy-btn").forEach(function (button) {
+
+            button.addEventListener("click", function () {
+
+                openWhatsApp(button.dataset.product);
+
+            });
+
+        });
+
+        // Product Details Modal
+        const modal = document.getElementById("productModal");
+        const modalClose = document.getElementById("modalClose");
+        const modalImage = document.getElementById("modalImage");
+        const modalTitle = document.getElementById("modalTitle");
+        const modalCategory = document.getElementById("modalCategory");
+        const modalDescription = document.getElementById("modalDescription");
+        const modalBuy = document.getElementById("modalBuy");
+
+        document.querySelectorAll(".details-btn").forEach(function (button) {
+
+            button.addEventListener("click", function () {
+
+                const name = button.dataset.name;
+
+                modalImage.src = button.dataset.image;
+                modalImage.alt = name;
+
+                modalTitle.textContent = name;
+                modalCategory.textContent = button.dataset.category;
+                modalDescription.textContent = button.dataset.description;
+
+                modalBuy.onclick = function (e) {
+
+                    e.preventDefault();
+
+                    openWhatsApp(name);
+
+                };
+
+                modal.classList.add("active");
+                document.body.style.overflow = "hidden";
+
+                modalClose.focus();
+
+            });
+
+        });
+
+        // Close Modal
+        function closeModal() {
+
+            modal.classList.remove("active");
+            document.body.style.overflow = "";
+
+        }
+
+        modalClose.addEventListener("click", closeModal);
+
+        modal.addEventListener("click", function (e) {
+
+            if (e.target === modal) {
+                closeModal();
+            }
+
+        });
+
+        document.addEventListener("keydown", function (e) {
+
+            if (e.key === "Escape" && modal.classList.contains("active")) {
+                closeModal();
+            }
+
+        });
+
+        // Dynamic Copyright Year
+        document.getElementById("currentYear").textContent =
+            new Date().getFullYear();
+
+    </script>
+
 </body>
-
-
 </html>
-

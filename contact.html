@@ -1,129 +1,1363 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Print India</title>
-    <link rel="stylesheet" href="style.css">
+
+    <title>Contact Us | PRINT INDIA - Saree & Textile Printing</title>
+
+    <meta name="description" content="Contact PRINT INDIA for saree printing, custom sketching, shopper bag printing and textile printing services. Get in touch with our team.">
+
+    <meta name="keywords" content="Contact Print India, Saree Printing, Textile Printing, Custom Sketching, Bag Printing">
+
+    <meta name="theme-color" content="#761b32">
+
+    <link rel="icon" href="images/logo.png">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <style>
+        :root {
+            --maroon: #761b32;
+            --dark-maroon: #521020;
+            --gold: #c49a59;
+            --cream: #faf7f2;
+            --soft: #f2ebe2;
+            --text: #342b28;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--cream);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Loader */
+
+        #loader {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: var(--dark-maroon);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity .5s ease, visibility .5s ease;
+        }
+
+        #loader.hide {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader-content {
+            text-align: center;
+            color: white;
+        }
+
+        .loader-content img {
+            width: 85px;
+            height: 85px;
+            object-fit: contain;
+            margin: auto auto 15px;
+        }
+
+        .loader-line {
+            width: 130px;
+            height: 3px;
+            background: rgba(255,255,255,.2);
+            margin: 15px auto 0;
+            overflow: hidden;
+        }
+
+        .loader-line::after {
+            content: "";
+            display: block;
+            height: 100%;
+            width: 50%;
+            background: var(--gold);
+            animation: loading 1s infinite ease-in-out;
+        }
+
+        @keyframes loading {
+            from { transform: translateX(-100%); }
+            to { transform: translateX(200%); }
+        }
+
+        /* Announcement Bar */
+
+        .top-bar {
+            background: var(--dark-maroon);
+            color: #f8e9d5;
+            text-align: center;
+            padding: 9px 15px;
+            font-size: 11px;
+            letter-spacing: 1.2px;
+        }
+
+        /* Navbar */
+
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(250,247,242,.96);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(118,27,50,.1);
+            transition: box-shadow .3s ease;
+        }
+
+        .navbar.scrolled {
+            box-shadow: 0 8px 25px rgba(0,0,0,.07);
+        }
+
+        .nav-inner {
+            max-width: 1250px;
+            margin: auto;
+            padding: 12px 25px;
+            min-height: 78px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo img {
+            width: 150px;
+            height: 55px;
+            object-fit: contain;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 36px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #4c3538;
+            font-size: 14px;
+            font-weight: 600;
+            position: relative;
+            transition: .3s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--maroon);
+        }
+
+        .nav-links a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -7px;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: width .3s ease;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .nav-contact {
+            background: var(--maroon);
+            color: white !important;
+            padding: 12px 22px;
+            border-radius: 3px;
+        }
+
+        .nav-contact:hover {
+            background: var(--dark-maroon);
+        }
+
+        .nav-contact::after {
+            display: none;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 25px;
+            color: var(--maroon);
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+
+        /* Hero */
+
+        .contact-hero {
+            min-height: 330px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 70px 20px;
+            background:
+                linear-gradient(rgba(48,12,24,.78), rgba(48,12,24,.82)),
+                url('images/about.png') center/cover no-repeat;
+            color: white;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 750px;
+        }
+
+        .hero-label {
+            color: #e2c18e;
+            font-size: 11px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-bottom: 17px;
+        }
+
+        .contact-hero h1 {
+            font-size: clamp(42px, 6vw, 65px);
+            line-height: 1.15;
+            margin-bottom: 17px;
+        }
+
+        .contact-hero h1 span {
+            color: #d9b477;
+            font-style: italic;
+        }
+
+        .contact-hero p {
+            color: #f2e7e2;
+            font-size: 15px;
+            line-height: 1.8;
+            max-width: 570px;
+            margin: auto;
+        }
+
+        .hero-line {
+            width: 65px;
+            height: 2px;
+            background: var(--gold);
+            margin: 24px auto 0;
+        }
+
+        /* Common */
+
+        .section-container {
+            max-width: 1180px;
+            margin: auto;
+            padding-left: 25px;
+            padding-right: 25px;
+        }
+
+        .section-label {
+            color: var(--gold);
+            text-transform: uppercase;
+            font-size: 11px;
+            letter-spacing: 3px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .section-heading {
+            font-size: clamp(30px, 4vw, 43px);
+            line-height: 1.2;
+            color: var(--dark-maroon);
+        }
+
+        .section-heading span {
+            color: var(--gold);
+            font-style: italic;
+        }
+
+        /* Contact Section */
+
+        .contact-section {
+            padding: 90px 0;
+        }
+
+        .contact-intro {
+            text-align: center;
+            max-width: 650px;
+            margin: 0 auto 55px;
+        }
+
+        .contact-intro p {
+            color: #81736e;
+            font-size: 14px;
+            line-height: 1.9;
+            margin-top: 16px;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: .9fr 1.1fr;
+            gap: 28px;
+            align-items: stretch;
+        }
+
+        /* Contact Information */
+
+        .contact-info {
+            background: var(--dark-maroon);
+            color: white;
+            padding: 42px 35px;
+            border-radius: 5px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-info::before {
+            content: "";
+            position: absolute;
+            width: 230px;
+            height: 230px;
+            border: 1px solid rgba(196,154,89,.2);
+            border-radius: 50%;
+            right: -100px;
+            bottom: -100px;
+        }
+
+        .contact-info h2 {
+            font-size: 29px;
+            margin-bottom: 12px;
+        }
+
+        .contact-info .info-description {
+            color: #d9c8c5;
+            font-size: 13px;
+            line-height: 1.8;
+            margin-bottom: 35px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 17px;
+            margin-bottom: 27px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .info-icon {
+            min-width: 43px;
+            height: 43px;
+            border: 1px solid rgba(196,154,89,.5);
+            color: #e2bd83;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 15px;
+        }
+
+        .info-item h4 {
+            font-family: 'DM Sans', sans-serif;
+            color: #e3c28e;
+            font-size: 12px;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+
+        .info-item p,
+        .info-item a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 13px;
+            line-height: 1.7;
+            overflow-wrap: anywhere;
+        }
+
+        .info-item a:hover {
+            color: #e3c28e;
+        }
+
+        .social-heading {
+            font-size: 13px;
+            color: #e3c28e;
+            margin: 35px 0 14px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 11px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .social-links a {
+            width: 39px;
+            height: 39px;
+            border: 1px solid rgba(255,255,255,.25);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: .3s;
+        }
+
+        .social-links a:hover {
+            background: var(--gold);
+            border-color: var(--gold);
+            color: var(--dark-maroon);
+            transform: translateY(-4px);
+        }
+
+        /* Contact Form */
+
+        .contact-form {
+            background: white;
+            padding: 42px;
+            border: 1px solid #eee5dc;
+            border-radius: 5px;
+            box-shadow: 0 12px 40px rgba(55,30,20,.045);
+        }
+
+        .contact-form h2 {
+            font-size: 29px;
+            color: var(--dark-maroon);
+            margin-bottom: 8px;
+        }
+
+        .form-description {
+            color: #8b7d77;
+            font-size: 13px;
+            line-height: 1.7;
+            margin-bottom: 28px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 19px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-group.full {
+            grid-column: 1 / -1;
+        }
+
+        .form-group label {
+            font-size: 12px;
+            font-weight: 700;
+            color: #594346;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 14px 15px;
+            background: #fcfaf7;
+            border: 1px solid #e9dfd6;
+            outline: none;
+            color: #453538;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 13px;
+            border-radius: 3px;
+            transition: .3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            border-color: var(--gold);
+            box-shadow: 0 0 0 3px rgba(196,154,89,.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 125px;
+        }
+
+        .submit-btn {
+            margin-top: 22px;
+            border: none;
+            background: var(--maroon);
+            color: white;
+            padding: 15px 28px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: .5px;
+            cursor: pointer;
+            border-radius: 3px;
+            transition: .3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .submit-btn:hover {
+            background: var(--dark-maroon);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(82,16,32,.2);
+        }
+
+        .form-note {
+            font-size: 11px;
+            color: #948781;
+            margin-top: 15px;
+            line-height: 1.6;
+        }
+
+        /* Map */
+
+        .map-section {
+            padding: 0 0 90px;
+        }
+
+        .map-heading {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .map-heading p {
+            font-size: 13px;
+            color: #81736e;
+            margin-top: 12px;
+        }
+
+        .map-container {
+            border: 8px solid white;
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 12px 35px rgba(55,30,20,.08);
+            height: 390px;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* CTA */
+
+        .contact-cta {
+            background: var(--soft);
+            padding: 65px 20px;
+            text-align: center;
+        }
+
+        .contact-cta h2 {
+            font-size: clamp(27px, 4vw, 37px);
+            color: var(--dark-maroon);
+            margin-bottom: 12px;
+        }
+
+        .contact-cta p {
+            color: #7f716b;
+            font-size: 14px;
+            margin-bottom: 25px;
+            line-height: 1.8;
+        }
+
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--maroon);
+            color: white;
+            padding: 14px 25px;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 700;
+            border-radius: 3px;
+            transition: .3s;
+        }
+
+        .cta-btn:hover {
+            background: var(--dark-maroon);
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+
+        .footer {
+            background: #26171b;
+            color: white;
+            padding: 65px 0 0;
+        }
+
+        .footer-container {
+            max-width: 1180px;
+            margin: auto;
+            padding: 0 25px 45px;
+            display: grid;
+            grid-template-columns: 1.4fr 1fr 1fr;
+            gap: 55px;
+        }
+
+        .footer-logo {
+            width: 145px;
+            height: 60px;
+            object-fit: contain;
+            margin-bottom: 17px;
+            background: white;
+            padding: 5px;
+            border-radius: 3px;
+        }
+
+        .footer-column p {
+            color: #c5b4b0;
+            font-size: 13px;
+            line-height: 1.9;
+            max-width: 320px;
+        }
+
+        .footer-column h4 {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #dfba81;
+            margin-bottom: 22px;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 13px;
+        }
+
+        .footer-column ul a {
+            text-decoration: none;
+            color: #c5b4b0;
+            font-size: 13px;
+            transition: .3s;
+        }
+
+        .footer-column ul a:hover {
+            color: #dfba81;
+            padding-left: 5px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 10px;
+        }
+
+        .footer-social a {
+            width: 36px;
+            height: 36px;
+            border: 1px solid #665057;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: .3s;
+        }
+
+        .footer-social a:hover {
+            background: var(--gold);
+            border-color: var(--gold);
+            color: #26171b;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,.1);
+            text-align: center;
+            padding: 20px 15px;
+            color: #a99591;
+            font-size: 11px;
+            letter-spacing: .5px;
+        }
+
+        /* Reveal Animations */
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(25px);
+            transition: opacity .7s ease, transform .7s ease;
+        }
+
+        .reveal.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Back To Top */
+
+        .back-top {
+            position: fixed;
+            right: 22px;
+            bottom: 22px;
+            width: 43px;
+            height: 43px;
+            background: var(--maroon);
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            z-index: 900;
+            opacity: 0;
+            visibility: hidden;
+            transition: .3s;
+        }
+
+        .back-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-top:hover {
+            background: var(--gold);
+            color: var(--dark-maroon);
+        }
+
+        /* Responsive */
+
+        @media (max-width: 850px) {
+            .nav-links {
+                gap: 22px;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-info {
+                padding: 35px;
+            }
+
+            .footer-container {
+                gap: 35px;
+            }
+        }
+
+        @media (max-width: 650px) {
+            .top-bar {
+                font-size: 9px;
+                letter-spacing: .7px;
+            }
+
+            .nav-inner {
+                min-height: 70px;
+                padding: 8px 20px;
+            }
+
+            .logo img {
+                width: 125px;
+                height: 48px;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--cream);
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0;
+                padding: 10px 20px 20px;
+                box-shadow: 0 12px 20px rgba(0,0,0,.08);
+                display: none;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links li {
+                border-bottom: 1px solid #eee4dc;
+            }
+
+            .nav-links a {
+                display: block;
+                padding: 14px 5px;
+            }
+
+            .nav-links a::after {
+                display: none;
+            }
+
+            .nav-contact {
+                display: inline-block !important;
+                width: fit-content;
+                margin-top: 10px;
+                padding: 11px 20px !important;
+            }
+
+            .contact-hero {
+                min-height: 280px;
+                padding: 60px 20px;
+            }
+
+            .contact-hero p {
+                font-size: 13px;
+            }
+
+            .contact-section {
+                padding: 65px 0;
+            }
+
+            .contact-intro {
+                margin-bottom: 35px;
+            }
+
+            .contact-info {
+                padding: 30px 24px;
+            }
+
+            .contact-form {
+                padding: 28px 20px;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-group.full {
+                grid-column: auto;
+            }
+
+            .map-section {
+                padding-bottom: 65px;
+            }
+
+            .map-container {
+                height: 300px;
+                border-width: 5px;
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+                gap: 35px;
+                padding-bottom: 35px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                animation-duration: .01ms !important;
+                transition-duration: .01ms !important;
+            }
+
+            .reveal {
+                opacity: 1;
+                transform: none;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-    <!-- Navbar -->
+    <!-- Page Loader -->
+    <div id="loader">
+        <div class="loader-content">
+            <img src="images/logo.png" alt="PRINT INDIA Logo">
+            <p style="letter-spacing:3px;font-size:12px;">PRINT INDIA</p>
+            <div class="loader-line"></div>
+        </div>
+    </div>
 
-    <header>
-        <nav>
-            <div class="logo">
-                <img src="images/logo.png" alt="">
-            </div>
-            <div class="menu-toggle" id="menu-toggle">
-                ☰
-            </div>
-            <ul id="nav-links">
+    <!-- Announcement Bar -->
+    <div class="top-bar">
+        CRAFTING TEXTILE BEAUTY WITH 30 YEARS OF EXPERIENCE
+    </div>
+
+    <!-- Navbar -->
+    <header class="navbar" id="navbar">
+        <nav class="nav-inner">
+
+            <a href="index.html" class="logo">
+                <img src="images/logo.png" alt="PRINT INDIA">
+            </a>
+
+            <button class="menu-toggle" id="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+            <ul class="nav-links" id="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="products.html">Products</a></li>
                 <li><a href="contact.html" class="active">Contact</a></li>
             </ul>
+
         </nav>
     </header>
 
     <!-- Hero Section -->
-
-    <section class="hero">
-        <div class="heading">
-            <h1>Welcome to Print India</h1>
-            <h2>Best Quality Sarees are available here at Good Prices.</h2>
-            <a href="products.html">View All Products</a>
+    <section class="contact-hero">
+        <div class="hero-content reveal">
+            <div class="hero-label">We Are Here For You</div>
+            <h1>Let's Start a <span>Conversation</span></h1>
+            <p>
+                Have a project in mind or looking for quality textile printing?
+                We'd love to hear from you and help bring your ideas to life.
+            </p>
+            <div class="hero-line"></div>
         </div>
     </section>
 
-    <!-- Contact page -->
-
+    <!-- Contact Section -->
     <section class="contact-section">
-        <div class="contact-container">
-            <h1 class="contact-title">Contact <span>Us</span></h1>
-            <p class="contact-subtitle">
-                Have a question or want to know more about our sarees? Get in touch with us — we’d love to hear from
-                you!
-            </p>
 
-            <div class="contact-main">
-                <!-- Contact Info -->
-                <div class="contact-info">
-                    <h2>Get in Touch</h2>
-                    <p><i class="fa-solid fa-location-dot"></i> 123, Textile Market Road, Surat, India</p>
-                    <p><i class="fa-solid fa-phone"></i> +91 98765 43210</p>
-                    <p><i class="fa-solid fa-envelope"></i> info@printindia.com</p>
+        <div class="section-container">
 
-                    <div class="social-icons">
-                        <a href="#"><i class="fa-brands fa-facebook"></i></a>
-                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+            <div class="contact-intro reveal">
+                <div class="section-label">Get In Touch</div>
+                <h2 class="section-heading">We'd Love to <span>Hear From You</span></h2>
+                <p>
+                    Whether you need saree printing, custom sketching or bag printing,
+                    our team is ready to understand your requirements and assist you.
+                </p>
+            </div>
+
+            <div class="contact-grid">
+
+                <!-- Contact Information -->
+                <div class="contact-info reveal">
+
+                    <h2>Contact Information</h2>
+
+                    <p class="info-description">
+                        Reach out to PRINT INDIA for enquiries, custom orders
+                        and textile printing requirements.
+                    </p>
+
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </div>
+
+                        <div>
+                            <h4>Our Location</h4>
+                            <p>Malik Tahir Pura, Mau, Uttar Pradesh 275101, India</p>
+                        </div>
                     </div>
+
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fa-solid fa-phone"></i>
+                        </div>
+
+                        <div>
+                            <h4>Phone Number</h4>
+                            <a href="tel:+919876543210">+91 98765 43210</a>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fa-solid fa-envelope"></i>
+                        </div>
+
+                        <div>
+                            <h4>Email Address</h4>
+                            <a href="mailto:info@printindia.com">info@printindia.com</a>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fa-regular fa-clock"></i>
+                        </div>
+
+                        <div>
+                            <h4>Business Enquiries</h4>
+                            <p>Contact us for orders, pricing and service details.</p>
+                        </div>
+                    </div>
+
+                    <h4 class="social-heading">Connect With Us</h4>
+
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook">
+                            <i class="fa-brands fa-facebook-f"></i>
+                        </a>
+
+                        <a href="#" aria-label="Instagram">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+
+                        <a href="https://wa.me/919876543210" target="_blank" rel="noopener" aria-label="WhatsApp">
+                            <i class="fa-brands fa-whatsapp"></i>
+                        </a>
+                    </div>
+
                 </div>
 
                 <!-- Contact Form -->
-                <div class="contact-form">
-                    <form>
-                        <input type="text" placeholder="Your Name" required>
-                        <input type="email" placeholder="Your Email" required>
-                        <input type="text" placeholder="Subject" required>
-                        <textarea placeholder="Your Message" rows="5" required></textarea>
-                        <button type="submit">Send Message</button>
+                <div class="contact-form reveal">
+
+                    <h2>Send Us a Message</h2>
+
+                    <p class="form-description">
+                        Fill out the form below and tell us what you're looking for.
+                    </p>
+
+                    <form id="contactForm">
+
+                        <div class="form-grid">
+
+                            <div class="form-group">
+                                <label for="name">Your Name *</label>
+                                <input type="text" id="name" name="name" placeholder="Enter your name" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Email Address *</label>
+                                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="phone">Phone Number *</label>
+                                <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="service">Interested In *</label>
+                                <select id="service" name="service" required>
+                                    <option value="">Select a Service</option>
+                                    <option value="Saree Printing">Saree Printing</option>
+                                    <option value="Custom Sketching">Custom Sketching</option>
+                                    <option value="Shopper Bag Printing">Shopper Bag Printing</option>
+                                    <option value="Side Bag Printing">Side Bag Printing</option>
+                                    <option value="Other Enquiry">Other Enquiry</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group full">
+                                <label for="subject">Subject *</label>
+                                <input type="text" id="subject" name="subject" placeholder="Enter message subject" required>
+                            </div>
+
+                            <div class="form-group full">
+                                <label for="message">Your Message *</label>
+                                <textarea id="message" name="message" placeholder="Tell us about your requirements..." required></textarea>
+                            </div>
+
+                        </div>
+
+                        <button type="submit" class="submit-btn">
+                            Send Message
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+
+                        <p class="form-note">
+                            Your message will open in WhatsApp so you can send your enquiry directly.
+                        </p>
+
                     </form>
+
                 </div>
+
             </div>
 
-            <!-- Google Map -->
-            <div class="map-container">
-                <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m23!1m12!1m3!1d90737.96781339332!2d83.4786863932814!3d25.946299487821967!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m8!3e6!4m0!4m5!1s0x39918b004bb913db%3A0xa59315d09cee1c3c!2sMalik%20Tahir%20Pura%2C%20Mau%2C%20Uttar%20Pradesh%20275101!3m2!1d25.946322799999997!2d83.56108789999999!5e1!3m2!1sen!2sin!4v1762252643364!5m2!1sen!2sin"
-                    width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy">
-                </iframe>
-            </div>
         </div>
+
     </section>
 
+    <!-- Google Map -->
+    <section class="map-section">
+
+        <div class="section-container">
+
+            <div class="map-heading reveal">
+                <div class="section-label">Find Us</div>
+                <h2 class="section-heading">Visit Our <span>Location</span></h2>
+                <p>We look forward to connecting with you.</p>
+            </div>
+
+            <div class="map-container reveal">
+                <iframe
+                    src="https://www.google.com/maps?q=Malik%20Tahir%20Pura%2C%20Mau%2C%20Uttar%20Pradesh%20275101&output=embed"
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                    allowfullscreen
+                    title="PRINT INDIA Location Map">
+                </iframe>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- CTA Section -->
+    <section class="contact-cta">
+
+        <div class="reveal">
+            <div class="section-label">Let's Work Together</div>
+
+            <h2>Have a Printing Project in Mind?</h2>
+
+            <p>
+                From beautiful saree prints to customised bags,
+                let's create something special together.
+            </p>
+
+            <a href="https://wa.me/919876543210" target="_blank" rel="noopener" class="cta-btn">
+                <i class="fa-brands fa-whatsapp"></i>
+                Chat With Us
+            </a>
+        </div>
+
+    </section>
 
     <!-- Footer -->
-
     <footer class="footer">
+
         <div class="footer-container">
+
             <div class="footer-column">
-                <h3>Print India</h3>
-                <p>Elegant Sarees crafted with love and tradition.</p>
+
+                <img src="images/logo.png" alt="PRINT INDIA Logo" class="footer-logo">
+
+                <p>
+                    PRINT INDIA brings creativity and craftsmanship together
+                    through saree printing, custom sketching and bag printing.
+                    Creating textile beauty with 30 years of experience.
+                </p>
+
             </div>
 
             <div class="footer-column">
+
                 <h4>Quick Links</h4>
+
                 <ul>
                     <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="products.html">Products</a></li>
-                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="products.html">Our Products</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
                 </ul>
+
             </div>
 
             <div class="footer-column">
-                <h4>Follow Us</h4>
-                <div class="social-icons">
-                    <a href="#">🌐</a>
-                    <a href="#">📸</a>
-                    <a href="#">💬</a>
+
+                <h4>Our Services</h4>
+
+                <ul>
+                    <li><a href="products.html">Saree Printing</a></li>
+                    <li><a href="products.html">Custom Sketching</a></li>
+                    <li><a href="products.html">Shopper Bag Printing</a></li>
+                    <li><a href="products.html">Side Bag Printing</a></li>
+                </ul>
+
+                <div class="footer-social">
+
+                    <a href="#" aria-label="Facebook">
+                        <i class="fa-brands fa-facebook-f"></i>
+                    </a>
+
+                    <a href="#" aria-label="Instagram">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+
+                    <a href="https://wa.me/919876543210" target="_blank" rel="noopener" aria-label="WhatsApp">
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </a>
+
                 </div>
+
             </div>
+
         </div>
 
         <div class="footer-bottom">
-            <p>© 2025 Print India Sarees. All Rights Reserved.</p>
+            <p>© <span id="currentYear"></span> PRINT INDIA. All Rights Reserved.</p>
         </div>
+
     </footer>
 
-    <script src="script.js"></script>
+    <!-- Back To Top -->
+    <button class="back-top" id="backTop" aria-label="Back to top">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
+    <!-- JavaScript -->
+    <script>
+
+        // Page Loader
+        window.addEventListener("load", function () {
+            document.getElementById("loader").classList.add("hide");
+        });
+
+        // Mobile Menu
+        const menuToggle = document.getElementById("menu-toggle");
+        const navLinks = document.getElementById("nav-links");
+        const menuIcon = menuToggle.querySelector("i");
+
+        menuToggle.addEventListener("click", function () {
+
+            navLinks.classList.toggle("active");
+
+            const isOpen = navLinks.classList.contains("active");
+
+            menuToggle.setAttribute("aria-expanded", isOpen);
+
+            menuIcon.className = isOpen
+                ? "fa-solid fa-xmark"
+                : "fa-solid fa-bars";
+
+        });
+
+        // Close Menu After Clicking Link
+        document.querySelectorAll(".nav-links a").forEach(function (link) {
+
+            link.addEventListener("click", function () {
+
+                navLinks.classList.remove("active");
+
+                menuToggle.setAttribute("aria-expanded", "false");
+
+                menuIcon.className = "fa-solid fa-bars";
+
+            });
+
+        });
+
+        // Navbar Scroll Effect
+        const navbar = document.getElementById("navbar");
+
+        // Back To Top
+        const backTop = document.getElementById("backTop");
+
+        window.addEventListener("scroll", function () {
+
+            navbar.classList.toggle("scrolled", window.scrollY > 30);
+
+            backTop.classList.toggle("show", window.scrollY > 350);
+
+        });
+
+        backTop.addEventListener("click", function () {
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+
+        });
+
+        // Scroll Reveal Animation
+        const revealElements = document.querySelectorAll(".reveal");
+
+        if ("IntersectionObserver" in window) {
+
+            const observer = new IntersectionObserver(function (entries) {
+
+                entries.forEach(function (entry) {
+
+                    if (entry.isIntersecting) {
+
+                        entry.target.classList.add("show");
+
+                        observer.unobserve(entry.target);
+
+                    }
+
+                });
+
+            }, {
+                threshold: 0.12
+            });
+
+            revealElements.forEach(function (element) {
+                observer.observe(element);
+            });
+
+        } else {
+
+            revealElements.forEach(function (element) {
+                element.classList.add("show");
+            });
+
+        }
+
+        // Contact Form - WhatsApp Integration
+        document.getElementById("contactForm").addEventListener("submit", function (e) {
+
+            e.preventDefault();
+
+            const name = document.getElementById("name").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const phone = document.getElementById("phone").value.trim();
+            const service = document.getElementById("service").value;
+            const subject = document.getElementById("subject").value.trim();
+            const message = document.getElementById("message").value.trim();
+
+            const whatsappNumber = "919876543210";
+
+            const whatsappMessage =
+                "Hello PRINT INDIA,%0A%0A" +
+                "*New Website Enquiry*%0A%0A" +
+                "*Name:* " + encodeURIComponent(name) + "%0A" +
+                "*Email:* " + encodeURIComponent(email) + "%0A" +
+                "*Phone:* " + encodeURIComponent(phone) + "%0A" +
+                "*Service:* " + encodeURIComponent(service) + "%0A" +
+                "*Subject:* " + encodeURIComponent(subject) + "%0A" +
+                "*Message:* " + encodeURIComponent(message);
+
+            const whatsappURL =
+                "https://wa.me/" + whatsappNumber + "?text=" + whatsappMessage;
+
+            window.open(whatsappURL, "_blank");
+
+        });
+
+        // Dynamic Copyright Year
+        document.getElementById("currentYear").textContent =
+            new Date().getFullYear();
+
+    </script>
+
 </body>
-
-
 </html>
-
